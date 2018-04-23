@@ -1,0 +1,189 @@
+
+<!-- HEADER
+================================================== -->
+<div class="undermenuarea">
+	<div class="boxedshadow">
+	</div>
+	<div class="grid">
+		<div class="row">
+			<div class="c8">
+				<h1 class="titlehead">Testimonials</h1>
+			</div>
+			<div class="c4">
+				<h1 class="titlehead rightareaheader"><i class="icon-map-marker"></i> Call Us Now 1-318-107-432</h1>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- CONTENT
+================================================== -->
+<div class="grid">
+		<div class="shadowundertop">
+		</div>
+		<div class="row">
+			<div class="c12">
+				<h1 class="maintitle ">
+				<span>What clients say</span>
+				</h1>
+				<div id="content">
+					<!-- box -->
+					<div class="boxfourcolumns fw">
+						<div class="testimonial">
+							<img src="http://placehold.it/90x90" class="avatarspic" alt="">
+							<h6>Relativity</h6>
+							 "When you are courting a nice girl an hour seems like a second. When you sit on a red-hot cinder a second seems like an hour. That's relativity. "
+						</div>
+						<div class="author-wrapper">
+							<div class="arrow">
+							</div>
+							<div class="testimonial-name">
+								 Albert Einstein <span>Leader</span>
+							</div>
+						</div>
+					</div>
+					<!-- box -->
+					<div class="boxfourcolumns fw">
+						<div class="testimonial">
+							<img src="http://placehold.it/90x90" class="avatarspic" alt="">
+							<h6>Sports</h6>
+							 My grandmother started walking five miles a day when she was sixty. She's ninety-seven now, and we don't know where the hell she is. "
+						</div>
+						<div class="author-wrapper">
+							<div class="arrow">
+							</div>
+							<div class="testimonial-name">
+								 Ellen DeGeneres <span>Leader</span>
+							</div>
+						</div>
+					</div>
+					<!-- box -->
+					<div class="boxfourcolumns fw">
+						<div class="testimonial">
+							<img src="http://placehold.it/90x90" class="avatarspic" alt="">
+							<h6>Logics</h6>
+							 "It's amazing that the amount of news that happens in the world every day always just exactly fits the newspaper."
+						</div>
+						<div class="author-wrapper">
+							<div class="arrow">
+							</div>
+							<div class="testimonial-name">
+								 Jerry Seinfeld <span>America</span>
+							</div>
+						</div>
+					</div>
+					<!-- box -->
+					<div class="boxfourcolumns fw">
+						<div class="testimonial">
+							<img src="http://placehold.it/90x90" class="avatarspic" alt="">
+							<h6>Design</h6>
+							 Design is a funny word. Some people think design means how it looks. But of course, if you dig deeper, it's really how it works. "
+						</div>
+						<div class="author-wrapper">
+							<div class="arrow">
+							</div>
+							<div class="testimonial-name">
+								 Steve Jobs <span>Founder</span>
+							</div>
+						</div>
+					</div>
+					<!-- box -->
+					<div class="boxfourcolumns fw">
+						<div class="testimonial">
+							<img src="http://placehold.it/90x90" class="avatarspic" alt="">
+							<h6>Comedy</h6>
+							 "Most comedy is based on getting a laugh at somebody else's expense. And I find that that's just a form of bullying in a major way. So I want to be an example that you can be funny and be kind, and make people laugh without hurting somebody else's feelings."
+						</div>
+						<div class="author-wrapper">
+							<div class="arrow">
+							</div>
+							<div class="testimonial-name">
+								 Ellen DeGeneres <span>Leadaer</span>
+							</div>
+						</div>
+					</div>
+					<!-- box -->
+					<div class="boxfourcolumns fw">
+						<div class="testimonial">
+							<img src="http://placehold.it/90x90" class="avatarspic" alt="">
+							<h6>Pyshics</h6>
+							 "It is funny that men who are supposed to be scientific cannot get themselves to realise the basic principle of physics, that action and reaction are equal and opposite, that when you persecute people you always rouse them to be strong and stronger."
+						</div>
+						<div class="author-wrapper">
+							<div class="arrow">
+							</div>
+							<div class="testimonial-name">
+								 Gertrude Stein <span>Leader</span>
+							</div>
+						</div>
+					</div>
+					<!-- box -->
+					<div class="boxfourcolumns fw">
+						<div class="testimonial">
+							<img src="http://placehold.it/90x90" class="avatarspic" alt="">
+							<h6>Education</h6>
+							 "Screaming at children over their grades, especially to the point of the child's tears, is child abuse, pure and simple. It's not funny and it's not good parenting. It is a crushing, scarring, disastrous experience for the child. It isn't the least bit funny."
+						</div>
+						<div class="author-wrapper">
+							<div class="arrow">
+							</div>
+							<div class="testimonial-name">
+								 Bob Stein <span>Leader</span>
+							</div>
+						</div>
+					</div>
+					<!-- box -->
+					<div class="boxfourcolumns fw">
+						<div class="testimonial">
+							<img src="http://placehold.it/90x90" class="avatarspic" alt="">
+							<h6>Excitement</h6>
+							 "I have just returned from Boston. It is the only thing to do if you find yourself up there. "
+						</div>
+						<div class="author-wrapper">
+							<div class="arrow">
+							</div>
+							<div class="testimonial-name">
+								 Fred Allen <span>Leader</span>
+							</div>
+						</div>
+					</div>
+					<!-- box etc -->
+				</div>
+			</div>
+		</div>
+</div><!-- end grid -->
+<!-- JAVASCRIPTS
+================================================== -->
+
+<!-- masonry -->
+<script src="<?php echo base_url()."assets/site/" ?>js/jquery.isotope.min.js"></script>
+
+<!-- call masonry -->
+<script>  		
+$(document).ready(function(){
+var $container = $('#content');
+  $container.imagesLoaded( function(){
+        $container.isotope({
+	filter: '*',
+	animationOptions: {
+     duration: 750,
+     easing: 'linear',
+     queue: false,
+   }
+});
+});
+$('#nav a').click(function(){
+  var selector = $(this).attr('data-filter');
+    $container.isotope({ 
+	filter: selector,
+	animationOptions: {
+     duration: 750,
+     easing: 'linear',
+     queue: false,
+   }
+  });
+  return false;
+});
+});
+</script>
+</body>
+</html>
