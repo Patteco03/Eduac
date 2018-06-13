@@ -1,4 +1,4 @@
-<div class="row-fluid">
+<div class="grid">
 	<div class="col-md-2">
 		<div class="departamento">
 			{BLC_DEPARTAMENTOS}

@@ -1,7 +1,7 @@
 
-<div class="container-fluid ">
+<div class="grid">
 
-	<div class="row-fluid">
+	<div class="row">
 
 		<div class="col-lg-12 conteudo">
 		
@@ -25,7 +25,7 @@
 					<div class="col-md-12 col-sm-12 col-xs-12 carrinho-vazio"> 	
 						<li>Seu carrinho está vazio.</li>
 						
-						<center><a href="<?php echo ci_site_url('');?>" title="ir para a loja"> <button type="button"><span style="color: #fff;" class="glyphicon glyphicon-shopping-cart"></span> Ir para loja</button></a></center>
+						<center><a href="<?php echo site_url('');?>" title="ir para a loja"> <button type="button"><span style="color: #fff;" class="glyphicon glyphicon-shopping-cart"></span> Ir para loja</button></a></center>
 					</div>	
 					{/BLC_SEMPRODUTOS} 
 					

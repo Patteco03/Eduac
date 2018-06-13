@@ -10,7 +10,7 @@
         		<div class="page-header float-right">
         			<div class="page-title">
         				<ol class="breadcrumb text-right">
-        					<li><a href="#">Dashboard</a></li>
+        					<li><a href="<?php echo site_url('painel') ?>">Dashboard</a></li>
         					<li><a href="active">Categoria</a></li>
         				</ol>
         			</div>
@@ -25,40 +25,44 @@
         				<div class="card">
         					<div class="card-header">
         						<strong class="card-title">LISTA DE CATEGORIAS</strong>
-        					</div>
-        					<div class="card-body">
-        						<table id="bootstrap-data-table" class="table table-striped table-bordered">
-        							<thead>
-        								<tr>
-        									<th>Nome</th>
-        									<th>Sub-Categoria</th>
-        									<th class="alinha-centro">Editar/Excluir</th>
-        								</tr>
-        							</thead>
-        							<tbody>
-        								{BLC_DADOS}
-        								<tr>
-        									<td>{NOME}</td>
-        									<td>{NOMEPAI}</td>
-        									<td class="alinha-centro" style="width: 240px;"><a href="{URLEDITAR}" class="btn btn-info btn-xs"><i
-        										class="fa fa-pencil"></i> Edit </a> <a href="{URLEXCLUIR}"
-        										onclick="return confirm('Deseja realmente ')"
-        										class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i>
-        									Delete </a></td>
-        								</tr>
-        								{/BLC_DADOS} {BLC_SEMDADOS}
-        								<tr>
-        									<td colspan="4" class="alinha-centro">Não há dados</td>
-        								</tr>
-        								{/BLC_SEMDADOS}
-        							</tbody>
-        						</table>
-        					</div>
-        				</div>
-        			</div>
+
+                                                        <div class="pull-right buttons">
+                                                               <a href="<?php echo site_url('painel/departamento/adicionar') ?>"><button class="btn btn-success"><i class="fa fa-plus"></i> Nova categoria</button></a>
+                                                       </div>
+                                               </div>
+                                               <div class="card-body">
+                                                  <table id="bootstrap-data-table" class="table table-striped table-bordered">
+                                                         <thead>
+                                                                <tr>
+                                                                       <th>Nome</th>
+                                                                       <th>Sub-Categoria</th>
+                                                                       <th class="alinha-centro">Editar/Excluir</th>
+                                                               </tr>
+                                                       </thead>
+                                                       <tbody>
+                                                        {BLC_DADOS}
+                                                        <tr>
+                                                               <td>{NOME}</td>
+                                                               <td>{NOMEPAI}</td>
+                                                               <td class="alinha-centro" style="width: 240px;"><a href="{URLEDITAR}" class="btn btn-info btn-xs"><i
+                                                                      class="fa fa-pencil"></i> Edit </a> <a href="{URLEXCLUIR}"
+                                                                      onclick="return confirm('Deseja realmente ')"
+                                                                      class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i>
+                                                              Delete </a></td>
+                                                      </tr>
+                                                      {/BLC_DADOS} {BLC_SEMDADOS}
+                                                      <tr>
+                                                       <td colspan="4" class="alinha-centro">Não há dados</td>
+                                               </tr>
+                                               {/BLC_SEMDADOS}
+                                       </tbody>
+                               </table>
+                       </div>
+               </div>
+       </div>
 
 
-        		</div>
-        	</div><!-- .animated -->
-        </div><!-- .content -->
+</div>
+</div><!-- .animated -->
+</div><!-- .content -->
 

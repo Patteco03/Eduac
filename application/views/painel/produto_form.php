@@ -10,8 +10,8 @@
                 <div class="page-header float-right">
                     <div class="page-title">
                         <ol class="breadcrumb text-right">
-                            <li><a href="#">Dashboard</a></li>
-                            <li><a href="#">Produto</a></li>
+                            <li><a href="<?php echo site_url('painel') ?>">Dashboard</a></li>
+                            <li><a href="<?php echo site_url('painel/produto/') ?>">Produto</a></li>
                             <li class="active">Adicionar</li>
                         </ol>
                     </div>
@@ -35,6 +35,8 @@
                                     <div class="x_panel tile">
                                         <input type="hidden" name="codproduto" id="codproduto"
                                         value="{codproduto}">
+                                        <input type="hidden" name="codusuario" id="codusuario"
+                                        value="{codusuario}">
                                         <div class="col-md-12">
                                             <div class="form-group">
                                                 <label class="control-label" for="nomeproduto">Nome <span
@@ -100,37 +102,16 @@
                                         <div class="form-group col-sm-6 col-xs-12">
                                             <label class="control-label" for="codtipoatributo">Data Início:</label>
                                             <div class="controls">
-                                                <input type="text" class="form-control set-date" id="datainicio"
+                                                <input type="date" class="form-control set-date" id="datainicio"
                                                 name="datainicio" value="{datainicio}" required="required">
                                             </div>
                                         </div>
                                         <div class="form-group col-sm-6 col-xs-12">
                                             <label class="control-label" for="codtipoatributo">Data Final:</label>
                                             <div class="controls">
-                                                <input type="text" class="form-control set-date" id="datafinal"
+                                                <input type="date" class="form-control set-date" id="datafinal"
                                                 name="datafinal" value="{datafinal}" required="required">
                                             </div>
-                                        </div>
-                                    </div>
-
-                                </div>
-
-                                <div class="col-lg-12 col-sm-12 col-xs-12"  style="padding-left: 0px; padding-right: 0px">
-                                    <div class="x_panel tile">
-
-                                        <div class="form-group">
-                                            <label class="control-label col-sm-12 col-xs-12" for="professores"> <center>  <h4>  Selecão de Professores </h4> </center>
-                                            </label>
-                                            {BLC_SELECAOPROFESSORES}
-                                            <div class="controls col-sm-4 col-xs-12">
-                                                <label for="professores-{CODPROFESSOR}" class="checkbox">
-                                                    <input {chk_professor} name="professor[]"
-                                                    class="sleprofessor" type="checkbox"
-                                                    id="professores-{CODPROFESSOR}" value="{CODPROFESSOR}">
-                                                    <img class="img-responsive" src="{FIGUREPROFESSOR}" alt="{NOMEPROFESSOR}" width="100" height="100"> {NOMEPROFESSOR}
-                                                </label>
-                                            </div>
-                                            {/BLC_SELECAOPROFESSORES}
                                         </div>
                                     </div>
 
@@ -147,69 +128,69 @@
 
                             <div class="card">
                                 <div class="card-header">
-                                     <button type="submit" class="btn bt">{ACAOBUTTON}</button>
-                                </div>
+                                   <button type="submit" class="btn bt">{ACAOBUTTON}</button>
+                               </div>
 
-                                <div class="col-sm-12 col-xs-12">
-                                    <div class="x_panel tile">
-                                        <div class="form-group">
-                                            <label class="control-label" for="valor">Valor <span
-                                                class="required">*</span>:
-                                            </label>
-                                            <div class="controls">
-                                                <input type="text" class="form-control set-numeric" id="valor"
-                                                name="valor" value="{valor}" required="required">
-                                            </div>
+                               <div class="col-sm-12 col-xs-12">
+                                <div class="x_panel tile">
+                                    <div class="form-group">
+                                        <label class="control-label" for="valor">Valor <span
+                                            class="required">*</span>:
+                                        </label>
+                                        <div class="controls">
+                                            <input type="text" class="form-control set-numeric" id="valor"
+                                            name="valor" value="{valor}" required="required">
                                         </div>
-                                        <div class="form-group">
-                                            <label class="control-label" for="valorpromocional">Valor
-                                            Promocional:</label>
-                                            <div class="controls">
-                                                <input type="text" class="form-control set-numeric"
-                                                id="valorpromocional" name="valorpromocional"
-                                                value="{valorpromocional}">
-                                            </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label" for="valorpromocional">Valor
+                                        Promocional:</label>
+                                        <div class="controls">
+                                            <input type="text" class="form-control set-numeric"
+                                            id="valorpromocional" name="valorpromocional"
+                                            value="{valorpromocional}">
                                         </div>
                                     </div>
                                 </div>
+                            </div>
 
 
-                                <div class="col-sm-12 col-xs-12">
-                                    <div class="x_panel tile">
-                                        <label class="control-label" for="dapartamento">Categorias:</label>
+                            <div class="col-sm-12 col-xs-12">
+                                <div class="x_panel tile">
+                                    <label class="control-label" for="dapartamento">Categorias:</label>
+                                    <ul class="lista-departamentos">
+                                        {BLC_DEPARTAMENTOPAI}
+                                        <li><label for="departamento-{CODDEPARTAMENTO}" class="checkbox">
+                                            <input {chk_departamentopai} name="departamento[]"
+                                            class="set-departamento-pai" type="checkbox"
+                                            id="departamento-{CODDEPARTAMENTO}" value="{CODDEPARTAMENTO}">
+                                            {NOMEDEPARTAMENTO}
+                                        </label>
+                                    </li>
+                                    <li>
                                         <ul class="lista-departamentos">
-                                            {BLC_DEPARTAMENTOPAI}
-                                            <li><label for="departamento-{CODDEPARTAMENTO}" class="checkbox">
-                                                <input {chk_departamentopai} name="departamento[]"
-                                                class="set-departamento-pai" type="checkbox"
-                                                id="departamento-{CODDEPARTAMENTO}" value="{CODDEPARTAMENTO}">
-                                                {NOMEDEPARTAMENTO}
-                                            </label>
-                                        </li>
-                                        <li>
-                                            <ul class="lista-departamentos">
-                                                {BLC_DEPARTAMENTOFILHO}
-                                                <li><label for="departamento-{CODDEPARTAMENTOFILHO}"
-                                                   class="checkbox"> <input
-                                                   {chk_departamentofilho} name="departamento[]"
-                                                   class="set-departamento-filho"
-                                                   data-pai="{CODDEPARTAMENTOPAI}" type="checkbox"
-                                                   id="departamento-{CODDEPARTAMENTOFILHO}"
-                                                   value="{CODDEPARTAMENTOFILHO}"> {NOMEDEPARTAMENTOFILHO}
-                                               </label></li>
-                                               {/BLC_DEPARTAMENTOFILHO}
-                                           </ul>
-                                       </li>
-                                       {/BLC_DEPARTAMENTOPAI}
-                                   </ul>
-                               </div>
-                           </div>
-                       </div><!-- /# card -->
+                                            {BLC_DEPARTAMENTOFILHO}
+                                            <li><label for="departamento-{CODDEPARTAMENTOFILHO}"
+                                             class="checkbox"> <input
+                                             {chk_departamentofilho} name="departamento[]"
+                                             class="set-departamento-filho"
+                                             data-pai="{CODDEPARTAMENTOPAI}" type="checkbox"
+                                             id="departamento-{CODDEPARTAMENTOFILHO}"
+                                             value="{CODDEPARTAMENTOFILHO}"> {NOMEDEPARTAMENTOFILHO}
+                                         </label></li>
+                                         {/BLC_DEPARTAMENTOFILHO}
+                                     </ul>
+                                 </li>
+                                 {/BLC_DEPARTAMENTOPAI}
+                             </ul>
+                         </div>
+                     </div>
+                 </div><!-- /# card -->
 
-                   </div>
-               </form>
-           </div> <!-- .buttons -->
+             </div>
+         </form>
+     </div> <!-- .buttons -->
 
-       </div><!-- .row -->
-   </div><!-- .animated -->
+ </div><!-- .row -->
+</div><!-- .animated -->
         </div><!-- .content -->

@@ -9,7 +9,7 @@ class Comprador_Model extends CI_Model {
 	}
 	
 	public function get($condicao = array(), $primeiraLinha = FALSE, $pagina = 0, $limite = LINHAS_PESQUISA_DASHBOARD) {
-		$this->db->select('codcomprador, nomecomprador, enderecocomprador, cidadecomprador, ufcomprador, cepcomprador, emailcomprador, telefonecomprador, cpfcomprador, sexocomprador, senhacomprador, tipo, status');
+		$this->db->select('codcomprador, nomecomprador, enderecocomprador, cidadecomprador, ufcomprador, cepcomprador, emailcomprador, telefonecomprador, cpfcomprador, sexocomprador, senhacomprador, status');
 		$this->db->where($condicao);
 		$this->db->from('comprador');
 		

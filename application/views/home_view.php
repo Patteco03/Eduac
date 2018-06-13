@@ -6,13 +6,13 @@
 		<div id="da-slider" class="da-slider">
 			<!--Slide 1-->
 			<div class="da-slide">
-				<h2> Elegant Design </h2>
+				<h2> Ganhe Ensinando </h2>
 				<p>
-					With the right, great looking responsive website template, you will be able to attract visitors and increase your sales. This is an elegant theme designed for multi-purpose use.
+					Eduac é uma paltaforma para EAD completa. Navegue pelo nosso site e veja mais detalhes sobre essa nova plataforma de ensino a distância.
 				</p>
-				<a href="#" class="da-link" style="width:202px;">Multi-Purpose</a>
+				<a href="#" class="da-link" style="width:202px;">Saiba mais >></a>
 				<div class="da-img">
-					<img src="http://placehold.it/238x420&text=Silhouette+here" alt="">
+					<img src="http://www.santanadeparnaiba.sp.gov.br/cursos/imagens/estudantes.png" alt="">
 				</div>
 			</div>
 			<!--Slide 2-->

@@ -9,7 +9,7 @@ class Atividade extends CI_Controller
     public function __construct()
     {
         parent::__construct();
-        $this->layout = SINGLE_LOJA;
+        $this->layout = LAYOUT_LOJA;
         $this->load->model('Atividade_Model', 'AtividadeM');
         $this->load->model('Modulo_Model', 'ModuloM');
         $this->load->model('Carrinho_Model', 'CarrinhoM');
@@ -22,14 +22,14 @@ class Atividade extends CI_Controller
         clienteLogado(true);
 
         $data = array();
-        $data ['URLADICIONAR'] = ci_site_url('atividade/adicionar');
-        $data ['SALVARATIVIDADE'] = ci_site_url('atividade/salvar');
+        $data ['URLADICIONAR'] = site_url('atividade/adicionar');
+        $data ['SALVARATIVIDADE'] = site_url('atividade/salvar');
         $data ['BLC_DADOS'] = array();
         $data ['BLC_SEMDADOS'] = array();
         $data ['BLC_PAGINAS'] = array();
         $data ["BLC_LINHA"] = array();
-        $data ["HOME"] = ci_site_url('');
-        $data ["PORTALDOALUNO"] = ci_site_url('portaldoaluno');
+        $data ["HOME"] = site_url('');
+        $data ["PORTALDOALUNO"] = site_url('portal');
         $data ['codcomprador'] = null;
 
         $comprador = $this->session->userdata('index');
@@ -163,7 +163,7 @@ class Atividade extends CI_Controller
                     "AULA" => $aulaReferencia,
                     "DATA" => $new_date,
                     "IMAGEMDESTACADA" => $urlfoto,
-                    "URLEXCLUIR" => ci_site_url('atividade/excluir/' . $r->codatividades),
+                    "URLEXCLUIR" => site_url('atividade/excluir/' . $r->codatividades),
                     "URL" => base_url($r->path . '/' . $r->name)
 
                 );
@@ -203,7 +203,7 @@ class Atividade extends CI_Controller
 
         if ($totalPaginas > $pagina) {
             $data['HABPROX'] = null;
-            $data['URLPROXIMO'] = ci_site_url('atividade?pagina=' . ($pagina + 1));
+            $data['URLPROXIMO'] = site_url('atividade?pagina=' . ($pagina + 1));
         } else {
             $data['HABPROX'] = 'disabled';
             $data['URLPROXIMO'] = '#';
@@ -219,7 +219,7 @@ class Atividade extends CI_Controller
                 $paginaVoltar = $pagina - 1;
             }
             $data['HABANTERIOR'] = null;
-            $data['URLANTERIOR'] = ci_site_url('atividade?pagina=' . $paginaVoltar);
+            $data['URLANTERIOR'] = site_url('atividade?pagina=' . $paginaVoltar);
         }
 
 
@@ -227,7 +227,7 @@ class Atividade extends CI_Controller
             $data['BLC_PAGINAS'][] = array(
                 "LINK" => ($indicePg == $pagina) ? 'active' : null,
                 "INDICE" => $indicePg,
-                "URLLINK" => ci_site_url('atividade?pagina=' . $indicePg)
+                "URLLINK" => site_url('atividade?pagina=' . $indicePg)
             );
 
             $indicePg++;

@@ -36,38 +36,39 @@ class Login extends CI_Controller {
 
 
 
-         if ($res) {
+        if ($res) {
 
             $itens    = array();
             $user_id  = null;
             $datahora = date('Y-m-d H:i:s');
             foreach ($res as $r ) {
 
-                
 
-               $itens = array (
+
+             $itens = array (
                 "name"      => $r->name,
                 "email"     => $r->email,
                 "username"  => $username,
                 "status"    => $r->status,
-                "roles_id"  => $r->roles_id
-                );
+                "roles_id"  => $r->roles_id,
+                "codusuario"   => $r->codusuario
+            );
 
-                $user_id = $r->codusuario;
+             $user_id = $r->codusuario;
 
-                $isPasswordCorrect = password_verify($senha, $r->password);
-                $status = $r->status;
-            }
+             $isPasswordCorrect = password_verify($senha, $r->password);
+             $status = $r->status;
+         }
 
-            $ExistemTentativas = $this->AttemptM->TotalDeTentaticas(array("codusuario" => $user_id));
+         $ExistemTentativas = $this->AttemptM->TotalDeTentaticas(array("codusuario" => $user_id));
 
-            if ($ExistemTentativas < 5) {
-               if ($isPasswordCorrect && $status == '1') {
+         if ($ExistemTentativas < 5) {
+             if ($isPasswordCorrect && $status == '1') {
 
-                    $this->AttemptM->LimparTentativas($user_id);
+                $this->AttemptM->LimparTentativas($user_id);
 
-                    $this->session->set_userdata ( "loginatendimento", $itens );
-                    redirect ( "painel" );
+                $this->session->set_userdata ( "loginatendimento", $itens );
+                redirect ( "painel" );
             }else{
 
                 $itensTentativa = array(
@@ -79,30 +80,30 @@ class Login extends CI_Controller {
 
                 $this->session->set_flashdata ( 'erro', 'Senha incorreta.' );
                 redirect ( "painel/login" );
-                }
-            }else{
-
-                $bloqueUsuario = array(
-                    "status"   => '0'
-                );
-
-                $this->UsuarioM->update($bloqueUsuario, $user_id);
-
-                $this->session->set_flashdata ( 'erro', 'Você escedeu o número de tentativas, usuário bloqueado!' );
-                redirect ( "painel/login" );
             }
-  
-            
-        } else {
-            $this->session->set_flashdata ( 'erro', 'Usuário não encontrado.' );
+        }else{
+
+            $bloqueUsuario = array(
+                "status"   => '0'
+            );
+
+            $this->UsuarioM->update($bloqueUsuario, $user_id);
+
+            $this->session->set_flashdata ( 'erro', 'Você escedeu o número de tentativas, usuário bloqueado!' );
             redirect ( "painel/login" );
         }
 
 
-    }
-    public function sair() {
-        $this->session->unset_userdata ( "loginatendimento" );
+    } else {
+        $this->session->set_flashdata ( 'erro', 'Usuário não encontrado.' );
         redirect ( "painel/login" );
     }
+
+
+}
+public function sair() {
+    $this->session->unset_userdata ( "loginatendimento" );
+    redirect ( "painel/login" );
+}
 
 }

@@ -4,7 +4,7 @@ if (! defined ( 'BASEPATH' ))
 class Conta extends CI_Controller {
 	public function __construct() {
 		parent::__construct ();
-		$this->layout = SINGLE_LOJA;
+		$this->layout = LAYOUT_LOJA;
 		$this->load->model ( 'Comprador_Model', 'CompradorM' );
 		$this->load->model ( 'Compradorfoto_Model', 'FotocompradorM' );
 		$this->load->model ( 'Produto_Model', 'ProdutoM' );
@@ -14,16 +14,13 @@ class Conta extends CI_Controller {
 		$this->load->model ( 'ProdutoFoto_Model', 'FotoM' );
 	}
 	public function novaconta() {
-		if (clienteLogado ()) {
-			redirect ( 'conta/perfil' );
-		}
 		
 		$this->title = "Criar uma nova conta";
 		$this->showDepartamento = FALSE;
 		
 		$data = array ();
 		$data ['ACAO'] = 'Cadastre-se para ter acesso ao nosso conteúdo';
-		$data ['ACAOFORM'] = ci_site_url ( 'conta/salvar' );
+		$data ['ACAOFORM'] = site_url ( 'conta/salvar' );
 		$data ['view_senha'] = 'show';
 		$data ['senha_view'] = 'hide';
 		
@@ -52,8 +49,7 @@ class Conta extends CI_Controller {
 		$sexocomprador		= $this->input->post('sexocomprador');
 		$senhacomprador		= $this->input->post('senhacomprador');
 		$telefonecomprador	= $this->input->post('telefonecomprador');
-		$status				= $this->input->post('status');
-		$tipo				= $this->input->post('tipo');
+		$status				= 1;
 
 		$cpfcomprador  = str_replace(".", null, $cpfcomprador);
 		$cpfcomprador  = str_replace("-", null, $cpfcomprador);
@@ -141,12 +137,12 @@ class Conta extends CI_Controller {
 				"sexocomprador"	    => $sexocomprador,
 				"status"		    => $status,
 				"telefonecomprador" => $telefonecomprador,
-				"tipo" 				=> $tipo,
 				"senhacomprador" 	=> $senhacomprador,
-				);
+			);
+
 
 			if ($senhacomprador) {
-				$itens['senhacomprador'] = $this->encrypt->sha1($senhacomprador);
+				$itens['senhacomprador'] = sha1($senhacomprador);
 			}
 
 			if ($codcomprador) {
@@ -179,7 +175,7 @@ class Conta extends CI_Controller {
 	}
 	public function login() {		
 		$data = array ();
-		$data ["URLVALIDACONTA"] = ci_site_url ( "conta/valida" );
+		$data ["URLVALIDACONTA"] = site_url ( "conta/valida" );
 		
 		$this->parser->parse ( "login", $data );
 	}
@@ -201,7 +197,7 @@ class Conta extends CI_Controller {
 		$infoComprador = $this->CompradorM->get ( array (
 			"emailcomprador" => $email,
 			"senhacomprador" => sha1 ( $senha ) 
-			), TRUE );
+		), TRUE );
 		
 		if (! $infoComprador) {
 			$this->session->set_flashdata ( 'erro', 'Email ou senha inválidos.' );
@@ -212,23 +208,11 @@ class Conta extends CI_Controller {
 				'nomecomprador'  => $infoComprador->nomecomprador,
 				'emailcomprador' => $infoComprador->emailcomprador,
 				'codcomprador'   => $infoComprador->codcomprador,
-				'tipo'			 =>	$infoComprador->tipo, 
 				'status'		 =>	$infoComprador->status, 
-				);
+			);
 			
-			if ($infoComprador->tipo === 'V'){
-				
-				$this->session->set_userdata ( 'index', $sessaoindex );
-				redirect ('conta/perfil' );
-
-			}else{
-				if ($infoComprador->tipo === 'P'){
-
-					$this->session->set_userdata ( 'index', $sessaoindex );
-					redirect ('portaldoaluno' );
-
-				}
-			}
+			$this->session->set_userdata ( 'index', $sessaoindex );
+			redirect ('portal' );
 			
 		}
 		
@@ -247,7 +231,7 @@ class Conta extends CI_Controller {
 		
 		$infocomprador = $this->CompradorM->get ( array (
 			"codcomprador" => $comprador ['codcomprador'] 
-			) );
+		) );
 		
 		
 		
@@ -255,7 +239,7 @@ class Conta extends CI_Controller {
 			redirect('conta/login');
 		}else{
 			if ($comprador['tipo'] === 'P'){
-				redirect('portaldoaluno');
+				redirect('portal');
 			}
 		}
 		
@@ -285,11 +269,11 @@ class Conta extends CI_Controller {
 		
 		$data ['ACAO'] 				= 'Área do aluno';
 		$data ['NOMECOMPRADOR'] 	= $comprador ['nomecomprador'];
-		$data ['EDITARFORM'] 		= ci_site_url ( 'conta/editar' );
-		$data ['SALVAFOTOPERFIL'] 	= ci_site_url ( 'conta/salvafotoperfil' );
+		$data ['EDITARFORM'] 		= site_url ( 'conta/editar' );
+		$data ['SALVAFOTOPERFIL'] 	= site_url ( 'conta/salvafotoperfil' );
 		$data ['CODCOMPRADOR'] 		= $comprador ['codcomprador'];
-		$data ['URLMEUSCURSOS'] 	= ci_site_url ( 'conta/meuscursos' );
-		$data ['ALTERARSENHA'] 		= ci_site_url ( 'portaldoaluno/alterarsenha' );
+		$data ['URLMEUSCURSOS'] 	= site_url ( 'conta/meuscursos' );
+		$data ['ALTERARSENHA'] 		= site_url ( 'portal/alterarsenha' );
 
 		
 		$this->parser->parse ( 'perfil', $data );
@@ -313,7 +297,7 @@ class Conta extends CI_Controller {
 		
 		$totalItens = $this->CarrinhoM->getTotal ( array (
 			"codcomprador" => $comprador ["codcomprador"] 
-			) );
+		) );
 		
 		$totalPaginas = ceil ( $totalItens / LINHAS_PESQUISA_DASHBOARD );
 		
@@ -329,25 +313,25 @@ class Conta extends CI_Controller {
 			$paginas [] = array (
 				"URLPAGINA" => current_url () . "?&pg={$i}",
 				"INDICE" => $i 
-				);
+			);
 		}
 		
 		$data ["BLC_PAGINACAO"] [] = array (
 			"BLC_PAGINA" => $paginas 
-			);
+		);
 		
 		$carrinho = $this->CarrinhoM->get ( array (
 			"c.codcomprador" => $comprador ["codcomprador"] 
-			), FALSE, $pg );
+		), FALSE, $pg );
 		
 		if ($carrinho) {
 			foreach ( $carrinho as $car ) {
 				$data ["BLC_DADOS"] [] = array (
-					"URLRESUMO" => ci_site_url ( 'conta/resumo/' . $car->codcarrinho ),
+					"URLRESUMO" => site_url ( 'conta/resumo/' . $car->codcarrinho ),
 					"CODPEDIDO" => $car->codcarrinho,
 					"DATA" => $car->data,
 					"VALOR" => number_format ( $car->valorcompra, 2, ",", "." ) 
-					);
+				);
 			}
 		}
 		
@@ -364,7 +348,7 @@ class Conta extends CI_Controller {
 		$carrinho = $this->CarrinhoM->get ( array (
 			"c.codcarrinho" => $codcarrinho,
 			"c.codcomprador" => $comprador ["codcomprador"] 
-			), TRUE );
+		), TRUE );
 		
 		if (! $carrinho) {
 			$this->session->set_flashdata ( 'erro', 'Carrinho não existente.' );
@@ -377,7 +361,7 @@ class Conta extends CI_Controller {
 		
 		$formasBoleto = array (
 			"3" 
-			);
+		);
 		
 		$data ["CODCARRINHO"] = $codcarrinho;
 		
@@ -390,8 +374,8 @@ class Conta extends CI_Controller {
 			}
 			
 			$data ["BLC_SHOWBOLETO"] [] = array (
-				"URLBOLETO" => ci_site_url ( 'conta/boleto/' . $codcarrinho . '/' . $tipoBoleto ) 
-				);
+				"URLBOLETO" => site_url ( 'conta/boleto/' . $codcarrinho . '/' . $tipoBoleto ) 
+			);
 		}
 		
 		$data ["DATA"] = $carrinho->data;
@@ -401,7 +385,7 @@ class Conta extends CI_Controller {
 		
 		$itens = $this->ItemCarrinhoM->get ( array (
 			"ic.codcarrinho" => $codcarrinho 
-			) );
+		) );
 		
 		$data ["BLC_DADOS"] = array ();
 		
@@ -412,7 +396,7 @@ class Conta extends CI_Controller {
 					"QTD" => $i->quantidadeitem,
 					"VLRUN" => number_format ( $i->valoritem, 2, ",", "." ),
 					"VLRTOTAL" => number_format ( $i->valorfinal, 2, ",", "." ) 
-					);
+				);
 			}
 		}
 		
@@ -428,7 +412,7 @@ class Conta extends CI_Controller {
 		$carrinho = $this->CarrinhoM->get ( array (
 			"c.codcarrinho" => $codcarrinho,
 			"c.codcomprador" => $comprador ["codcomprador"] 
-			), TRUE );
+		), TRUE );
 		
 		if (! $carrinho) {
 			$this->session->set_flashdata ( 'erro', 'Carrinho não existente.' );
@@ -457,8 +441,8 @@ class Conta extends CI_Controller {
 		
 		$data = array ();
 		$data ['ACAO'] = 'Editar cadastro';
-		$data ['ACAOFORM'] = ci_site_url ( 'conta/salvar' );
-		$data ['ACAOFORMSENHA'] = ci_site_url ( 'conta/redefinirsenha' );
+		$data ['ACAOFORM'] = site_url ( 'conta/salvar' );
+		$data ['ACAOFORMSENHA'] = site_url ( 'conta/redefinirsenha' );
 		$data ['view_senha'] = 'hide';
 		$data ['senha_view'] = 'show';
 		
@@ -466,7 +450,7 @@ class Conta extends CI_Controller {
 		
 		$res = $this->CompradorM->get ( array (
 			"codcomprador" => $comprador ['codcomprador'] 
-			), TRUE );
+		), TRUE );
 		
 		if ($res) {
 			foreach ( $res as $chave => $valor ) {
@@ -501,7 +485,7 @@ class Conta extends CI_Controller {
 		$foto = array (
 			"codcomprador" => $codcomprador,
 			"compradorfotoextensao" => $extensao 
-			);
+		);
 		
 		$codfoto = $this->FotocompradorM->post ( $foto );
 		
@@ -519,11 +503,11 @@ class Conta extends CI_Controller {
 					"type" => $arquivo ["type"] [0],
 					"url" => base_url ( $enderecoFoto ),
 					"thumbnarilUrl" => base_url ( $enderecoFoto ),
-					"deleteUrl" => ci_site_url ( 'painel/profile/removefoto/' . $codfoto . '/' . $codcomprador ),
+					"deleteUrl" => site_url ( 'painel/profile/removefoto/' . $codfoto . '/' . $codcomprador ),
 					"deleteType" => 'DELETE' 
-					) 
 				) 
-			);
+			) 
+		);
 		
 		if ($jsonRetorno) {
 			$this->session->set_flashdata ( 'sucesso', 'foto alterada com sucesso.' );
@@ -581,28 +565,72 @@ class Conta extends CI_Controller {
 		
 		$data = array ();
 		
-		$senha = $this->input->post ( 'senhaantigacomprador' );
-		$senha_nova = $this->input->post ( 'senhacomprador' );
-		$confirme_senha = $this->input->post ( 'confirm_password' );
+		$senha = sha1(strip_tags($this->input->post ( 'senhaantigacomprador' )));
+		$senha_nova = sha1(strip_tags($this->input->post ( 'senhacomprador' )));
+		$confirme_senha = sha1(strip_tags($this->input->post ( 'confirm_password' )));
 
 		
 		$res = $this->CompradorM->get ( array (
 			"codcomprador" => $comprador ['codcomprador'] 
-			), TRUE );
-		
-		if ($res) {
-			foreach ( $res as $chave => $valor ) {
-				$data [$chave] = $valor;
-			}
-		} else {
-			show_error ( 'Não foram encontrados dados.', 500, 'Ops, erro encontrado.' );
+		), TRUE );
+
+		$erros			= FALSE;
+		$mensagem		= null;
+
+
+		if (!$senha) {
+			$erros		= TRUE;
+			$mensagem	.= "Informe a senha atual.\n";
 		}
-		
-		$dados = array (
-			"sucesso" => TRUE 
-			);
-		
-		echo json_encode ( $dados );
+
+		if (!$senha_nova) {
+			$erros		= TRUE;
+			$mensagem	.= "Informe a nova senha.\n";
+		}
+
+		if (!$confirme_senha) {
+			$erros		= TRUE;
+			$mensagem	.= "Informe a confirmação da senha.\n";
+		}
+
+
+		if (!$erros) {
+
+			if ($senha != $res->senhacomprador) {
+				$mensagem .= "As senhas não conhecidem..\n";
+			}else{
+
+				$itens = array(
+					"senhacomprador" => $senha_nova
+				);
+
+				$comprador['codcomprador'] = $this->CompradorM->update($itens, $comprador['codcomprador']);
+
+				if ($comprador ['codcomprador']) {
+					$this->session->set_flashdata('sucesso', 'Senha Alterada com sucesso.');
+					redirect('portal');
+				} else {
+					$this->session->set_flashdata('erro', 'Ocorreu um erro ao realizar a operação.');
+
+					if ($comprador['codcomprador']) {
+						redirect('portal/alterarsenha');
+					} else {
+						redirect('portal/alterarsenha');
+					}
+				}
+			}
+			
+		}else {
+			$this->session->set_flashdata('erro', nl2br($mensagem));
+			if ($codepartamento) {
+				redirect('portal/alterarsenha');
+			} else {
+				redirect('portal/alterarsenha');
+			}
+		}
+
+
+
 	}
 	public function meuscursos() {
 
@@ -611,13 +639,13 @@ class Conta extends CI_Controller {
 		$data = array ();
 		
 		$data ['ACAO'] = 'Lista de cursos';
-		$data ['URLHOME'] = ci_site_url ();
-		$data ['URLPERFIL'] = ci_site_url ( "conta/perfil/" );
+		$data ['URLHOME'] = site_url ();
+		$data ['URLPERFIL'] = site_url ( "conta/perfil/" );
 
 		$comprador = $this->session->userdata ( 'index' );
 
 		if ($comprador['tipo'] === 'P'){
-			redirect('portaldoaluno/financeiro');
+			redirect('portal/financeiro');
 		}
 		
 		$pagina = $this->input->get ( 'pagina' );
@@ -659,9 +687,9 @@ class Conta extends CI_Controller {
 					$data ['BLC_DADOS']	[] = array(
 						"nomecurso"		=> $infoproduto->nomeproduto,
 						"i"				=> $contador,
-						"URLVIDEOAULA"  => ci_site_url('conta/playlist/'.$c->codproduto),
+						"URLVIDEOAULA"  => site_url('conta/playlist/'.$c->codproduto),
 						"datahoracompra"=> date("F j, Y, g:i a", strtotime($c->datahoracompra))
-						);
+					);
 
 				}else{
 
@@ -693,7 +721,7 @@ class Conta extends CI_Controller {
 		
 		if ($totalPaginas > $pagina) {
 			$data['HABPROX']	= null;
-			$data['URLPROXIMO']	= ci_site_url('conta/meuscursos?pagina='.($pagina+1));
+			$data['URLPROXIMO']	= site_url('conta/meuscursos?pagina='.($pagina+1));
 		} else {
 			$data['HABPROX']	= 'disabled';
 			$data['URLPROXIMO']	= '#';
@@ -709,7 +737,7 @@ class Conta extends CI_Controller {
 				$paginaVoltar = $pagina - 1;
 			}
 			$data['HABANTERIOR']= null;
-			$data['URLANTERIOR']= ci_site_url('conta/meuscursos?pagina='.$paginaVoltar);
+			$data['URLANTERIOR']= site_url('conta/meuscursos?pagina='.$paginaVoltar);
 		}
 		
 		
@@ -718,8 +746,8 @@ class Conta extends CI_Controller {
 			$data['BLC_PAGINAS'][] = array(
 				"LINK"		=> ($indicePg==$pagina)?'active':null,
 				"INDICE"	=> $indicePg,
-				"URLLINK"	=> ci_site_url('conta/meuscursos?pagina='.$indicePg)
-				);
+				"URLLINK"	=> site_url('conta/meuscursos?pagina='.$indicePg)
+			);
 
 			$indicePg++;
 		}
@@ -758,7 +786,7 @@ class Conta extends CI_Controller {
 
 			$sql_code = $this->CompradorM->get ( array (
 				"emailcomprador" => $email,
-				), TRUE );
+			), TRUE );
 
 
 			if ($sql_code) {
@@ -769,7 +797,7 @@ class Conta extends CI_Controller {
 
 				$itens	= array(
 					"senhacomprador" 	=> $nscriptografada,
-					);
+				);
 
 
 				$atualizabanco = $this->CompradorM->update($itens, $sql_code->codcomprador);
@@ -781,7 +809,7 @@ class Conta extends CI_Controller {
 						"novasenha"		=> $novasenha,
 
 
-						);
+					);
 
 
 				}else{
@@ -874,7 +902,7 @@ class Conta extends CI_Controller {
 							"CODARQUIVO"     => $df->codarquivosmodulo,
 							"CONTEUDOMODULO" => base_url ( "assets/uploads/".$df->folder.'/' . $df->name ),
 							"AULANOME"		 => $df->aulanome,				
-							);
+						);
 
 
 					}
@@ -889,7 +917,7 @@ class Conta extends CI_Controller {
 					"URLMODULO" 			 => $m->codmodulo,
 					"CONTADOR"				 =>$contador,	
 					"BLC_CONTEUDODISPONIVEL" => $aFilhos 
-					);
+				);
 				$data ['CODMODULO'] = $m->codmodulo;
 
 
@@ -917,7 +945,7 @@ class Conta extends CI_Controller {
 			$retorno = array(
 				'codigo' => $erro ,
 				'mensagem' => 'Nao existe curso!'
-				);
+			);
 			echo json_encode($retorno);
 		}else{
 			
@@ -935,14 +963,14 @@ class Conta extends CI_Controller {
 						"nomemodulo" => $mo->nomemodulo,
 						"codmodulo" =>  $mo->codmodulo
 
-						);
+					);
 					
 					$retorno = array(
 						'codigo' 	  => $erro ,
 						'mensagem'    => 'Lista de cursos obtida com sucesso',
 						'cursos'   	  => $listcursos
 						
-						);
+					);
 
 				}
 

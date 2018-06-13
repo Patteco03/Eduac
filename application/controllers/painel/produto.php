@@ -22,7 +22,6 @@ class Produto extends CI_Controller {
 		$data ['BLC_DADOS'] 	= array ();
 		$data ['BLC_SEMDADOS']  = array ();
 		$data ['BLC_PAGINAS']   = array ();
-		$data ["BLC_LINHA"] 	= array ();
 		
 		$produtosExibidos = 0;
 		$coluna = array ();
@@ -44,17 +43,18 @@ class Produto extends CI_Controller {
 				$foto = $this->FotoM->getFoto ( $r->codproduto );
 				
 				if (! $foto) {
-					$urlFoto = base_url ( "assets/img/foto-indisponivel.jpg" );
+					$urlFoto = base_url ( "assets/images/foto-indisponivel.png" );
 				}
 				
 				if ($foto) {
 					
 					foreach ( $foto as $f ) {
-						$urlFoto = base_url ( "assets/img/produto/150x150/" . $f->codprodutofoto . "." . $f->produtofotoextensao );
+						$urlFoto = base_url ( "assets/images/produto/150x150/" . $f->codprodutofoto . "." . $f->produtofotoextensao );
 					}
 				}
 				
-				$coluna [] = array (
+				$data['BLC_DADOS'] [] = array (
+					"CODPRODUTO"		=> $r->codproduto,
 					"NOME" 				=> $r->nomeproduto,
 					"VIDEOAULAS" 		=> site_url ( 'painel/produto/videoaula/' . $r->codproduto ),
 					"IMAGEMDESTACADA" 	=> $urlFoto,
@@ -62,25 +62,10 @@ class Produto extends CI_Controller {
 					"URLEXCLUIR" 		=> site_url ( 'painel/produto/excluir/' . $r->codproduto ),
 					"URLVIDEO" 			=> site_url ( 'painel/modulo/videoaula/' . $r->codproduto ) 
 				);
-				
-				
-				$produtosExibidos ++;
-				
-				if ($produtosExibidos === 1) {
-					$produtosExibidos = 0;
-					$data ["BLC_LINHA"] [] = array (
-						"BLC_COLUNA" => $coluna 
-					);
-					
-					$coluna = array ();
-				}
+
 			}
-			
-			if ($produtosExibidos > 0) {
-				$data ["BLC_LINHA"] [] = array (
-					"BLC_COLUNA" => $coluna 
-				);
-			}
+
+
 		} else {
 			$data ['BLC_SEMDADOS'] [] = array ();
 		}
@@ -134,21 +119,26 @@ class Produto extends CI_Controller {
 	public function adicionar() {
 		$data = array ();
 
+		$usuario = $this->session->userdata ( 'loginatendimento' );
+
 		$data ['ACAO'] 					= 'Novo';
 		$data ['ACAOBUTTON'] 			= 'Publicar';
+		$data ['ACAOFORM']				= site_url('painel/produto/salvar');
 		$data ['codproduto'] 			= null;
+		$data ['codusuario']			= $usuario['codusuario'];
 		$data ['nomeproduto'] 			= null;
 		$data ['resumoproduto'] 		= null;
 		$data ['fichaproduto'] 			= null;
 		$data ['duracao']				= null;
 		$data ['destinocurso']			= null;
+		$data ['datainicio']			= null;
+		$data ['datafinal']				= null;
 		$data ['valor'] 				= '0.00';
 		$data ['valorpromocional'] 		= '0.00';
 		$data ['BLC_TIPOATRIBUTOS'] 	= array ();
 		$data ['BLC_DEPARTAMENTOPAI']   = array ();
 		$data ['des_tipoatributo'] 		= null;
 		$data ['readonly'] 				= null;
-		$data ['BLC_SELECAOPROFESSORES']= array();
 		
 		
 		
@@ -202,31 +192,12 @@ class Produto extends CI_Controller {
 				);
 			}
 		}
-
-		$professor = $this->UsuarioM->get ( array (), FALSE, 0, FALSE );
-
-		if ($professor) {
-			foreach ($professor as $pf) {
-
-				$fotopf = base_url("assets/img/user.png");
-
-				if ($pf->status == 1 ) {
-					$data ['BLC_SELECAOPROFESSORES'] [] = array(
-						"CODPROFESSOR"		=> $pf->codusuario,
-						"FIGUREPROFESSOR"	=> $fotopf,
-						"NOMEPROFESSOR"		=> $pf->name,
-						"chk_professor"		=> null
-
-					);
-				}
-
-			}
-		}
 		
 		$this->parser->parse ( 'painel/produto_form', $data );
 	}
 	public function salvar() {
 		$codproduto 		= $this->input->post('codproduto' );
+		$codusuario 		= $this->input->post('codusuario' );
 		$nomeproduto 		= $this->input->post('nomeproduto' );
 		$resumoproduto 		= $this->input->post('resumoproduto' );
 		$fichaproduto 		= $this->input->post('fichaproduto' );
@@ -282,6 +253,7 @@ class Produto extends CI_Controller {
 			
 			$itens = array (
 				"nomeproduto"      => $nomeproduto,	
+				"codusuario"	   => $codusuario,
 				"resumoproduto"    => $resumoproduto,
 				"fichaproduto"     => $fichaproduto,
 				"valor" 		   => $valor,
@@ -325,18 +297,6 @@ class Produto extends CI_Controller {
 					$itenDepProd ['codproduto'] = $codproduto;
 					$itenDepProd ['codprodutodepartamento'] = $dep;
 					$this->ProdDepM->post ( $itenDepProd );
-				}
-
-				$this->UsuarioPro->delete ( $codproduto );
-
-				// VINCULA Usuario
-				foreach ($professor as $pf) {
-
-					$iprofessor = array (
-						"codproduto"	=>$codproduto,
-						"codusuario"	=>$pf
-					);
-					$this->UsuarioPro->post ( $iprofessor );
 				}
 				
 				redirect ( 'painel/produto' );
@@ -383,7 +343,7 @@ class Produto extends CI_Controller {
 		$data ['valor'] = modificaNumericValor ( $res->valor );
 		$data ['valorpromocional'] = modificaNumericValor ( $res->valorpromocional );
 
-		$data ['datainicio'] = inverteData($res->datainicio) ;
+		$data ['datainicio'] = inverteData($res->datainicio);
 
 		$data ['datafinal']  = inverteData($res->datafinal);
 		
@@ -449,43 +409,6 @@ class Produto extends CI_Controller {
 					"BLC_DEPARTAMENTOFILHO" => $aFilhos,
 					"chk_departamentopai" 	=> (in_array ( $dp->codepartamento, $aDepartamentosVinculados )) ? 'checked="checked"' : null 
 				);
-			}
-		}
-
-		// ARMAZENA OS DEPARTAMENTOS VINCULADO
-		$UsuarioVinculados = array ();
-		
-		$UsuVinc = $this->UsuarioPro->get ( array ("dp.codproduto" => $id ), FALSE, 0, FALSE );
-		
-		if ($UsuVinc) {
-			foreach ( $UsuVinc as $Udepv ) {
-				array_push ( $UsuarioVinculados, $Udepv->codusuario );
-			}
-		}
-
-		$professor = $this->UsuarioM->get ( array (), FALSE, 0, FALSE );
-
-		if ($professor) {
-			foreach ($professor as $pf) {
-
-				if (!$pf->image) {
-					$fotopf = base_url("assets/img/user.png");
-				}else{
-					$fotopf = base_url($pf->image);
-				}
-
-				if ($pf->tipousuario == 'E' && $pf->ativadousuario == 'S') {
-
-					$data ['BLC_SELECAOPROFESSORES'] [] = array(
-						"CODPROFESSOR"			=> $pf->codusuario,
-						"FIGUREPROFESSOR"		=> $fotopf,
-						"NOMEPROFESSOR"			=> $pf->nomeusuario,
-						"chk_professor" 		=> (in_array ( $pf->codusuario, $UsuarioVinculados )) ? 'checked="checked"' : null 
-
-					);
-
-				}
-
 			}
 		}
 		

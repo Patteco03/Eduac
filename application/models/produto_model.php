@@ -34,7 +34,7 @@ if (! defined ( 'BASEPATH' ))
 			return $this->db->count_all_results ();
 		}
 		public function getBusca($condicao = array(), $primeiraLinha = FALSE, $pagina = 0, $limite = LINHAS_PESQUISA_DASHBOARD, $ordenacao = FALSE, $tipoOrdem = "ASC") {
-			$this->db->select ( 'codproduto, nomeproduto, resumoproduto, fichaproduto, valorproduto, valorpromocional, codtipoatributo, urlseo' );
+			$this->db->select ( 'codproduto, nomeproduto, resumoproduto, fichaproduto, valor, valorpromocional, codtipoatributo, urlseo' );
 			foreach ( $condicao as $c ) {
 				$this->db->like ( "UPPER(nomeproduto)", strtoupper ( $c ), 'both' );
 			}
@@ -64,7 +64,7 @@ if (! defined ( 'BASEPATH' ))
 			return $this->db->count_all_results ();
 		}
 		public function getDepartamento($condicao = array(), $primeiraLinha = FALSE, $pagina = 0, $limite = LINHAS_PESQUISA_DASHBOARD, $ordenacao = FALSE, $tipoOrdem = "ASC") {
-			$this->db->select ( 'p.codproduto, p.nomeproduto, p.resumoproduto, p.fichaproduto, p.valorproduto, p.valorpromocional, p.codtipoatributo, p.urlseo' );
+			$this->db->select ( 'p.codproduto, p.nomeproduto, p.resumoproduto, p.fichaproduto, p.valor, p.valorpromocional, p.codtipoatributo, p.urlseo' );
 			$this->db->from ( "produto p" );
 			$this->db->from ( "produtodepartamento dp" );
 			$this->db->where ( $condicao );

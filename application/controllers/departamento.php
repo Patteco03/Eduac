@@ -4,7 +4,7 @@ if (! defined ( 'BASEPATH' ))
 class Departamento extends CI_Controller {
     public function __construct() {
         parent::__construct ();
-        $this->layout = SINGLE_LOJA;
+        $this->layout = LAYOUT_LOJA;
     }
     public function listagem($coddepartamento) {
         $pg = $this->input->get ( "pg" );
@@ -33,7 +33,7 @@ class Departamento extends CI_Controller {
                 $campoOrdenacao = "p.nomeproduto";
                 break;
             case "valor" :
-                $campoOrdenacao = "p.valorproduto";
+                $campoOrdenacao = "p.valor";
                 break;
             default :
                 $campoOrdenacao = "p.nomeproduto";

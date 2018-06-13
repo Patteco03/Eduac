@@ -1,73 +1,68 @@
 
-<div class="container">
+<div class="grid">
 	<div class="row">
+		<div class="c8">
+			<ol class="breadcrumb breadcrumb-arrow">
+				<li><a href="<?php echo site_url('portal') ?>">Início</a></li>
+				<li class="active"><span>Financeiro</span></li>
+			</ol>
 
-			<div class="col-lg-12 con-cadastro">
-
-			<div class="col-md-4"></div>
-
-			<div class="col-md-4">
-
-				<div class="form-cadastro">
-					<h4>{ACAO}</h4>
-			<form action="<?php echo ci_site_url('portaldoaluno/atualizarRegistro'); ?>" method="post" class="form-horizontal"
+			<form action="<?php echo site_url('portal/atualizarRegistro'); ?>" method="post" class="form-horizontal"
 				id="myform">
 				<input type="hidden" name="codcomprador" id="codcomprador"
-						value="{codcomprador}">
-				<div class="form-group">
-					<label class="control-label col-sm-3 col-xs-12" for="nomecomprador">Nome
+				value="{codcomprador}">
+				<div class="c6 noleftmargin">
+					<label class="control-label" for="nomecomprador">Nome
 						<span class="required">*</span>
 					</label>
-					<div class="col-sm-9 col-xs-12">
+					<div class="controls">
 						<input type="text" class="form-control" id="nomecomprador"
-							name="nomecomprador" value="{nomecomprador}" required="required">
+						name="nomecomprador" value="{nomecomprador}" required="required">
 					</div>
 				</div>
-				<div class="form-group">
-					<label class="control-label col-sm-3 col-xs-12" for="cpfcomprador">CPF
+				<div class="c6 noleftmargin">
+					<label class="control-label" for="cpfcomprador">CPF
 						<span class="required">*</span>
 					</label>
-					<div class="controls col-sm-9 col-xs-12">
+					<div class="controls">
 						<input type="text" class="form-control" class="form-control"
-							id="cpfcomprador" name="cpfcomprador" value="{cpfcomprador}"
-							required="required">
+						id="cpfcomprador" name="cpfcomprador" value="{cpfcomprador}"
+						required="required">
 					</div>
 				</div>
-				<div class="form-group">
-					<label class="control-label col-sm-3 col-xs-12" for="cepcomprador">CEP
+				<div class="c3 noleftmargin">
+					<label class="control-label" for="cepcomprador">CEP
 						<span class="required">*</span>
 					</label>
-					<div class="controls col-sm-9 col-xs-12">
+					<div class="controls">
 						<input type="text" class="form-control" class="busca-cep"
-							id="cepcomprador" name="cepcomprador" value="{cepcomprador}"
-							required="required">
+						id="cepcomprador" name="cepcomprador" value="{cepcomprador}"
+						required="required">
 					</div>
 				</div>
-				<div class="form-group">
-					<label class="control-label col-sm-3 col-xs-12"
-						for="enderecocomprador">Endereço <span class="required">*</span>
+				<div class="c9 noleftmargin">
+					<label class="control-label" for="enderecocomprador">Endereço <span class="required">*</span>
 					</label>
-					<div class="controls col-sm-9 col-xs-12">
+					<div class="controls">
 						<input type="text" class="form-control" id="enderecocomprador"
-							name="enderecocomprador" value="{enderecocomprador}"
-							required="required">
+						name="enderecocomprador" value="{enderecocomprador}"
+						required="required">
 					</div>
 				</div>
-				<div class="form-group">
-					<label class="control-label col-sm-3 col-xs-12"
-						for="cidadecomprador">Cidade <span class="required">*</span>
+				<div class="c4 noleftmargin">
+					<label class="control-label" for="cidadecomprador">Cidade <span class="required">*</span>
 					</label>
-					<div class="controls col-sm-9 col-xs-12">
+					<div class="controls">
 						<input type="text" class="form-control" id="cidadecomprador"
-							name="cidadecomprador" value="{cidadecomprador}"
-							required="required">
+						name="cidadecomprador" value="{cidadecomprador}"
+						required="required">
 					</div>
 				</div>
-				<div class="form-group">
-					<label class="control-label col-sm-3 col-xs-12" for="ufcomprador">UF
+				<div class="c2 noleftmargin">
+					<label class="control-label" for="ufcomprador">UF
 						<span class="required">*</span>
 					</label>
-					<div class="controls col-sm-9 col-xs-12">
+					<div class="controls">
 						<select name="ufcomprador" class="form-control" id="ufcomprador">
 							<option value="AC"{ufcomprador_AC}>AC</option>
 							<option value="AL"{ufcomprador_AL}>AL</option>
@@ -99,113 +94,102 @@
 						</select>
 					</div>
 				</div>
-				<div class="form-group">
-					<label class="control-label col-sm-3 col-xs-12"
-						for="emailcomprador">Email <span class="required">*</span>
+				<div class="c6 noleftmargin">
+					<label class="control-label"
+					for="emailcomprador">Email <span class="required">*</span>
+				</label>
+				<div class="controls">
+					<input type="text" class="form-control" id="emailcomprador"
+					name="emailcomprador" value="{emailcomprador}"
+					required="required">
+				</div>
+			</div>
+			<div class="c4 noleftmargin">
+				<label class="control-label"
+				for="telefonecomprador">Telefone *</label>
+				<div class="controls">
+					<input type="text" class="form-control" id="telefonecomprador"
+					name="telefonecomprador" value="{telefonecomprador}">
+				</div>
+			</div>
+			<div class="c4 noleftmargin">
+				<label class="control-label" for="sexocomprador">Sexo *</label>
+				<div class="controls">
+					<label class="radio c5"> 
+						<input type="radio" name="sexocomprador" id="sexocompradorM" value="M"{sexocomprador_M}>
+						Masculino
+					</label> 
+
+					<label class="radio c4"> 
+						<input type="radio" name="sexocomprador" id="sexocompradorF" value="F"{sexocomprador_F}>
+						Feminino
 					</label>
-					<div class="controls col-sm-9 col-xs-12">
-						<input type="text" class="form-control" id="emailcomprador"
-							name="emailcomprador" value="{emailcomprador}"
-							required="required">
-					</div>
 				</div>
-				<div class="form-group">
-					<label class="control-label col-sm-3 col-xs-12"
-						for="telefonecomprador">Telefone</label>
-					<div class="controls col-sm-9 col-xs-12">
-						<input type="text" class="form-control" id="telefonecomprador"
-							name="telefonecomprador" value="{telefonecomprador}">
-					</div>
-				</div>
-				<div class="form-group" style="display: none;">
-						<label class="control-label" for="status">Status<span
-							class="required">*</span>:
-						</label>
-						<div class="controls">
-							<select name="status" class="form-control" id="status">
-								<option value="1"{status_1}>Ativo</option>
-								<option value="0"{status_0}>Inativo</option>
-							</select>
-						</div>
-					</div>
-				<div class="form-group">
-					<label class="control-label col-sm-3 col-xs-12" for="sexocomprador">Sexo</label>
-					<div class="controls col-sm-9 col-xs-12">
-						<label class="radio col-xs-4 col-sm-4"> <input type="radio"
-							name="sexocomprador" id="sexocompradorM" value="M"{sexocomprador_M}>
-							Masculino
-						</label> <label class="radio col-xs-4 col-sm-4"> <input
-							type="radio" name="sexocomprador" id="sexocompradorF" value="F"{sexocomprador_F}>
-							Feminino
-						</label>
-					</div>
-				</div>
+			</div>
+			<hr>
 
-				<div class="form-group">
-					<label class="control-label col-sm-5 col-xs-12" for="tipo">Tenho
-						interesse nos cursos :<br> <small>Seu
-							nível de acesso vai mudar de acordo com com a sua escolha. </small>
-					</label>
-					<div class="controls col-sm-7 col-xs-12">
-						<select  readonly="readonly" name="tipo" class="form-control" id="tipo">
-							<option value="P"{tipo_P}>Cursos Presenciais</option>
-						</select>
-					</div>
-				</div>
-				<hr>
 
-			
-				<div class="salvar-conta col-md-12">
+			<div class="c2">
+				<button type="submit" class="btn btn-success toggle">Atualizar</button> 
+			</div>
+			<div class="c4">
+				<a href="{URLALTERARSENHA}"><button type="button" class="btn btn-info">Alterar senha</button></a>	
+			</div>
+		</form>
 
-					<div class="col-sm-6 col-xs-12">
-						<button type="submit" class="btn btn-success toggle">salvar</button>
-					</div>
-
-					<div class="col-sm-6 col-xs-12">
-						<a href="{URLALTERARSENHA}"><button type="button" class="btn btn-info">Alterar senha</button></a>	
-					</div>
-				</div>
-				
-			</form>
 	</div>
-</div>
 
-<div class="col-md-4"></div>
-			</div>	
+	<div class="c4">
+		<hr><hr>
+		<div class="form-group">
 
+			<img src="{URLFOTO}" title="imagem do perfil"
+			class="img">
+
+			<br>
+			<!-- Button trigger modal -->
+			<a href="#" data-toggle="modal" data-target="#exampleModal">Alterar
+			imagem</a>
+
+		</div>
 
 	</div>
 </div>
+</div>
+
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
+aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal-dialog" role="document">
+	<div class="modal-content">
+		<div class="modal-header">
+			<h5 class="modal-title" id="exampleModalLabel">Editar perfil -
+			Imagem</h5>
+			<button type="button" class="close" data-dismiss="modal"
+			aria-label="Close">
+			<span aria-hidden="true">&times;</span>
+		</button>
+	</div>
+	<div class="modal-body">
+		<!-- Upload  -->
+		<form id="formulario" method="post" enctype="multipart/form-data"
+		action="<?php echo site_url('portal/salvafotoperfil') ?>">
 
 
 
-<style type="text/css">
-	
-.con-cadastro {
-	text-align: center;
-	min-height: 900px;
-	padding-left: 0px;
-	padding-right: 0px;
-	color: white;
-}
+		<input type="hidden" name="codcomprador" value="{codcomprador}"> <span>Escolha
+		uma foto para miniatura </span><br> <br> <input type="file"
+		id="imagem" name="fotos[]" /> <br> <br>
+
+		<button type="submit" class="btn btn-primary">Salvar</button>
+	</form>
+	<div id="visualizar"></div>
+</div>
+<div class="modal-footer">
+	<button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+
+</div>
+</div>
+</div>
+</div>
 
 
-.conteudo{
-	background: #50a3a2;
-	background: linear-gradient(top left, #50a3a2 0%, #53e3a6 100%);
-	background: linear-gradient(to bottom right, #50a3a2 0%, #53e3a6 100%);
-	font-family: 'Source Sans Pro', sans-serif;
-	color: white;
-	font-weight: 300;
-
-}
-
-select[readonly]{
-	background: #eee;
-	pointer-events: none;
-	touch-action: none;
-}
-
-
-
-</style>

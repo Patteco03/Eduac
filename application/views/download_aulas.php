@@ -1,11 +1,9 @@
 
-<div class="container">
+<div class="grid">
 
 	<div class="row">
 
 		<div class="col-lg-12 conteudo">
-
-			<h3 class="title-carrinho">Portal do Aluno - Download </h3>
 
 			<ol class="breadcrumb breadcrumb-arrow">
 				<li><a href="{PORTALDOALUNO}">Portal do Aluno</a></li>

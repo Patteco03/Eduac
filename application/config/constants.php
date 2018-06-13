@@ -54,7 +54,6 @@ define('CAR_ABERTO',				            'A'); //Total a serem exibidos
 define('LINHAS_PESQUISA_DASHBOARD',				30); //Total a serem exibidos
 define('LAYOUT_DASHBOARD',						'dashboard'); //Nome da template para o painel
 define('LAYOUT_LOJA',						    'home'); //Nome da template para a loja
-define('SINGLE_LOJA',						    'single'); //Pagina de carregamento interno
 
 /*
 |--------------------------------------------------------------------------

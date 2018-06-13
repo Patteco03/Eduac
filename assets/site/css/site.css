@@ -1,0 +1,46 @@
+
+
+.logo{
+	margin-top: 28px;
+}
+
+.imgLogin{
+	width: 100%;
+	height: auto;
+}
+
+.formlogin{
+	background: #86c9e2;
+	padding: 20px;
+	min-height: 472px;
+}
+
+.formlogin .maintitle span{
+	background: transparent !important;
+}
+
+.leftsidebar ul li{
+	color: #000;
+	font-size: 2rem;
+	padding: 5px 0px;
+}
+
+.leftsidebar ul li a{
+	color: #44a6bc;
+	text-decoration: none;
+	transition: all 0.5s;
+}
+
+.leftsidebar ul li a:hover{
+	color: #296977;
+	text-decoration: none;
+}
+
+.leftsidebar ul li a i{
+	background: yellow;
+	font-size: 3rem;
+	padding: 10px;
+	border-radius: 50%;
+}
+
+

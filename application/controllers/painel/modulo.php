@@ -51,10 +51,10 @@ class Modulo extends CI_Controller
         $data ['BLC_INFORMACOES'] [] = array(
             "NOMECURSO" => $infoproduto->nomeproduto,
             "RESUMO" => $infoproduto->resumoproduto,
-            "DURACAO" => $infoproduto->duracaocurso,
-            "DATAINICIO" => strftime('%A, %d de %B de %Y', $infoproduto->datainicio),
-            "DATAFINAL" => strftime('%A, %d de %B de %Y', $infoproduto->datafinal),
-            "VALOR" => $infoproduto->valorproduto
+            "DURACAO" => $infoproduto->duracao,
+            "DATAINICIO" => $infoproduto->datainicio,
+            "DATAFINAL" => $infoproduto->datafinal,
+            "VALOR" => $infoproduto->valor
         );
 
         if (!$infoproduto) {
@@ -69,7 +69,7 @@ class Modulo extends CI_Controller
 
                 if (!$foto) {
 
-                    $urlFoto = base_url("assets/img/foto-indisponivel.jpg");
+                    $urlFoto = base_url("assets/images/foto-indisponivel.png");
                     $data ['URLFOTO'] = $urlFoto;
                 }
 
@@ -487,8 +487,8 @@ class Modulo extends CI_Controller
                 }
 
                 $data ['NOMEAULA'] = $r->aulanome;
-                $data['status_' . $r->status] = 'selected="selected"';
-                $data['tipo_' . $r->tipo] = 'selected="selected"';
+                $data ['status_' . $r->status] = 'selected="selected"';
+                $data ['tipo_' . $r->tipo] = 'selected="selected"';
                 $data ['descricao'] = $r->descricao;
                 $data ['CODMODULO'] = $r->codmodulo;
                 $data ['CODARQUIVOS'] = $r->codarquivosmodulo;

@@ -271,7 +271,7 @@ a.prev span, a.next span { display: none }
 /* FOOTER ================================================== */
 #wrapfooter { background-color: #222; margin-top: 40px; }
 #footer .title { font-size: 15px; color: #fff; border-bottom: solid #333 1px; padding-bottom: 3px; width: 90%; }
-.footerstress { border: solid #0E8FAB; border-width: 1px 0 0; clear: both; margin: -9px 0px 17px; height: 0; width: 50%; }
+.footerstress { margin: -9px 0px 17px; height: 0; width: 50%; }
 #footer [class^="icon-"], #footer [class*=" icon-"] { margin-right: 7px }
 #footer { padding: 15px 0px 15px; color: #777; }
 #footer a { color: #888 }

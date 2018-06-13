@@ -9,7 +9,13 @@
 	<link rel="stylesheet" type="text/css" href="<?php echo base_url()."assets/site/"?>css/slider.css"/>
 	<link rel="stylesheet" type="text/css" href="<?php echo base_url()."assets/site/"?>css/skinblue.css"/><!-- change skin color -->
 	<link rel="stylesheet" type="text/css" href="<?php echo base_url()."assets/site/"?>css/responsive.css"/>
+	<link rel="stylesheet" type="text/css" href="<?php echo base_url()."assets/site/"?>css/site.css"/>
+
+	<link rel="stylesheet" type="text/css" href="<?php echo base_url()."assets/site/"?>css/bootstrap.min.css"/>
 	<script src="<?php echo base_url()."assets/site/" ?>js/jquery-1.9.0.min.js"></script><!-- the rest of the scripts at the bottom of the document -->
+
+
+
 </head>
 <body>
 <!-- TOP LOGO & MENU
@@ -19,7 +25,7 @@
 			<!--Logo-->
 			<div class="c4">
 				<a href="<?php echo site_url('') ;?>">
-					<img src="<?php echo base_url('assets/site/images/logo.png') ;?>" class="logo" alt="">
+					<img class="img-responsive logo" src="<?php echo base_url('assets/images/logoedu-mini.png') ?>" class="logo" alt="" >
 				</a>
 			</div>
 			<!--Menu-->
@@ -27,17 +33,9 @@
 				<nav id="topNav">
 					<ul id="responsivemenu">
 						<li class="active"><a href="<?php echo site_url('') ;?>"><i class="icon-home homeicon"></i><span class="showmobile">Home</span></a></li>
-						<li><a href="#">Templates</a>
-							<ul style="display: none;">
-								<li><a href="<?php echo site_url('page/about') ;?>">About</a></li>
-								<li><a href="<?php echo site_url('page/services') ;?>">Services</a></li>			
-								<li><a href="<?php echo site_url('page/testimonials') ;?>">Testimonials</a></li>	
-								<li><a href="<?php echo site_url('page/faq') ;?>">F.A.Q.s</a></li>					
-								<li><a href="<?php echo site_url('page/gallery') ;?>">Gallery</a></li>
-								<li class="last"><a href="<?php echo site_url('page/e404') ;?>">404 Page</a></li>
-							</ul>
+						<li><a href="<?php echo site_url('page/lojacurso') ?>">Cursos</a>
 						</li>
-						<li><a href="#">Elements</a>
+						<li><a href="#">Sobre</a>
 							<ul style="display: none;">					
 								<li><a href="team.html">Team</a></li>
 								<li><a href="pricing.html">Pricing Tables</a></li>
@@ -47,7 +45,7 @@
 
 							</ul>
 						</li>
-						<li><a href="#">Portfolio</a>
+						<li><a href="#">Consultória</a>
 							<ul>
 								<li><a href="portfolio2.html">Two Columns</a></li>
 								<li><a href="portfolio3.html">Three Columns</a></li>
@@ -59,7 +57,7 @@
 								<li><a href="singleproject.html">Project Details</a></li>
 							</ul>
 						</li>				
-						<li class="last"><a href="<?php echo site_url('page/contact') ;?>">Contact</a></li>
+						<li class="last"><a href="<?php echo site_url('page/contact') ;?>">CONTATO</a></li>
 
 					</ul>
 				</nav>
@@ -68,6 +66,7 @@
 	</div>
 
 	<div>
+		<div class="shadowundertop"></div>
 		{MENSAGEM_SISTEMA_ERRO}
 		{MENSAGEM_SISTEMA_SUCESSO}
 		{CONTEUDO}
@@ -84,7 +83,7 @@
 				</p>
 				<!-- 1st column -->
 				<div class="c3">
-					<img src="<?php echo base_url('assets/site/images/logo-footer.png') ;?>" style="padding-top: 70px;" alt="">
+					<img class="img-responsive" src="<?php echo base_url('assets/images/logoed.png') ?>" style="padding-top: 70px;" alt="">
 				</div>
 				<!-- 2nd column -->
 				<div class="c3">
@@ -150,11 +149,13 @@
 				</div>
 				<div class="c6">
 					<span class="right">
-					 by Eduac </span>
+					by Eduac </span>
 				</div>
 			</div>
 		</div>
 	</div>
+
+	<input type="hidden" id="siteURL" class="siteURL" name="siteURL" value="<?php echo site_url() ;?> ">
 	<!-- END CONTENT AREA -->
 <!-- JAVASCRIPTS
 	================================================== -->
@@ -174,7 +175,7 @@
 	<script src="<?php echo base_url()."assets/site/" ?>js/jquery.carouFredSel-6.0.3-packed.js"></script>
 
 	<!-- twitter -->
-	<script src="<?php echo base_url()."assets/site/" ?>js/jquery.tweet.js"></script>
+	<script src="<?php echo base_url()."assets/site/" ?>js/bootstrap.min.js"></script>
 
 	<!-- Call Showcase - change 4 from min:4 and max:4 to the number of items you want visible -->
 	<script type="text/javascript">

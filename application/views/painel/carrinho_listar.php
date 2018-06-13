@@ -10,7 +10,7 @@
         		<div class="page-header float-right">
         			<div class="page-title">
         				<ol class="breadcrumb text-right">
-        					<li><a href="#">Dashboard</a></li>
+        					<li><a href="<?php echo site_url('painel') ?>">Dashboard</a></li>
         					<li><a href="active">Formas de Pagamento</a></li>
         				</ol>
         			</div>
@@ -24,7 +24,7 @@
         			<div class="col-md-12">
         				<div class="card">
         					<div class="card-header">
-        						<strong class="card-title">LISTA DE FORMAS DE PAGAMENTO</strong>
+        						<strong class="card-title">LISTA DE CARRINHOS</strong>
         					</div>
         					<div class="card-body">
         						<table id="bootstrap-data-table" class="table table-striped table-bordered">

@@ -2,12 +2,12 @@
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang=""> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8" lang=""> <![endif]-->
 <!--[if IE 8]>         <html class="no-js lt-ie9" lang=""> <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang=""> <!--<![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="pt-BR"> <!--<![endif]-->
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Administrativo - Eduac</title>
-    <meta name="description" content="Sufee Admin - HTML5 Admin Template">
+    <meta name="description" content="Plataforma EaD para cursos online">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <link rel="apple-touch-icon" href="<?php echo base_url()."assets/" ?>apple-icon.png">
@@ -19,6 +19,7 @@
     <link rel="stylesheet" href="<?php echo base_url()."assets/" ?>assets/css/themify-icons.css">
     <link rel="stylesheet" href="<?php echo base_url()."assets/" ?>assets/css/flag-icon.min.css">
     <link rel="stylesheet" href="<?php echo base_url()."assets/" ?>assets/css/cs-skin-elastic.css">
+     <link rel="stylesheet" href="<?php echo base_url()."assets/" ?>assets/css/styledashboad.css">
     <!-- <link rel="stylesheet" href="<?php echo base_url()."assets/" ?>assets/css/bootstrap-select.less"> -->
     <link rel="stylesheet" href="<?php echo base_url()."assets/" ?>assets/scss/style.css">
     <link href="<?php echo base_url()."assets/" ?>assets/css/lib/vector-map/jqvmap.min.css" rel="stylesheet">
@@ -40,7 +41,7 @@
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#main-menu" aria-controls="main-menu" aria-expanded="false" aria-label="Toggle navigation">
                     <i class="fa fa-bars"></i>
                 </button>
-                <a class="navbar-brand" href="<?php echo site_url('painel')?>">Plataforma Eduac</a>
+                <a class="navbar-brand" href="<?php echo site_url('painel')?>"><img class="img-responsive" src="<?php echo base_url('assets/images/logoedu-mini.png') ;?>" alt=""></a>
                 <a class="navbar-brand hidden" href="<?php echo site_url('painel')?>"> ED </a>
             </div>
 
@@ -54,7 +55,6 @@
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-mortar-board"></i>Cursos</a>
                         <ul class="sub-menu children dropdown-menu">
                             <li><a href="<?php echo site_url('painel/produto') ?>">Todos os Cursos</a></li>
-                            <li><a href="<?php echo site_url('painel/produto/adicionar') ?>">Novo</a></li>
                             <li><a href="<?php echo site_url('painel/departamento') ?>">Categorias</a></li>
                             <li><a href="<?php echo site_url('painel/tipoatributo') ?>">Vitrine</a></li>
                         </ul>
@@ -64,9 +64,7 @@
                     <li class="menu-item-has-children dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-bar-chart-o"></i>Financeiro</a>
                         <ul class="sub-menu children dropdown-menu">
-                            <li><a href="<?php echo site_url('painel/formapagamento') ?>">Formas de Pagamento</a></li>
                             <li><a href="<?php echo site_url('painel/carrinho') ?>">Carrinho</a></li>
-                            <li><a href="<?php echo site_url('painel/atributo/adicionar') ?>">Novo</a></li>
                         </ul>
                     </li>
 
@@ -79,6 +77,24 @@
                             <li><a href="<?php echo site_url('painel/permissoes') ?>">Grupos e Permissões</a></li>
                         </ul>
                     </li>
+
+                    <h3 class="menu-title">Biblioteca</h3><!-- /.menu-title -->
+                    <li class="menu-item-has-children dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa  fa-archive"></i>Acervo</a>
+                        <ul class="sub-menu children dropdown-menu">
+                            <li><a href="<?php echo site_url('painel/biblioteca/adicionar') ?>">Adicionar</a></li>
+                            <li><a href="<?php echo site_url('painel/biblioteca') ?>">Biblioteca</a></li>
+                        </ul>
+                    </li>
+
+                    <h3 class="menu-title">Suporte  </h3><!-- /.menu-title -->
+                    <li class="menu-item-has-children dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa  fa-address-card"></i>Notificações</a>
+                        <ul class="sub-menu children dropdown-menu">
+                            <li><a href="<?php echo site_url('painel/suporte') ?>">Listar</a></li>
+                        </ul>
+                    </li>
+
 
 
 
@@ -147,7 +163,7 @@
 
     <!-- Right Panel -->
 
-    <script src="<?php echo base_url()."assets/" ?>assets/js/vendor/jquery-2.1.4.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js"></script>
     <script src="<?php echo base_url()."assets/" ?>assets/js/plugins.js"></script>
     <script src="<?php echo base_url()."assets/" ?>assets/js/main.js"></script>
@@ -160,6 +176,7 @@
     <script src="<?php echo base_url()."assets/" ?>assets/js/lib/vector-map/jquery.vmap.min.js"></script>
     <script src="<?php echo base_url()."assets/" ?>assets/js/lib/vector-map/jquery.vmap.sampledata.js"></script>
     <script src="<?php echo base_url()."assets/" ?>assets/js/lib/vector-map/country/jquery.vmap.world.js"></script>
+
     <script>
         ( function ( $ ) {
             "use strict";

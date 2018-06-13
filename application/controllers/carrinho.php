@@ -7,13 +7,7 @@ class Carrinho extends CI_Controller
     public function __construct()
     {
         parent::__construct();
-
-        $CI = &get_instance();
-        $CI->config->load("mercadopago", TRUE);
-        $config = $CI->config->item('mercadopago');
-        $this->load->library('Mercadopago', $config);
-
-        $this->layout = SINGLE_LOJA;
+        $this->layout = LAYOUT_LOJA;
         $this->load->model("Sku_Model", "SkuM");
         $this->load->model("Produto_Model", "ProdutoM");
         $this->load->model("ProdutoFoto_Model", "ProdutoFotoM");
@@ -34,7 +28,6 @@ class Carrinho extends CI_Controller
         $data ["BLC_FINALIZAR"] = array();
         $data ["BLC_SEMPRODUTOS"] = array();
         $data ["ACAO"] = 'Meu carrinho - Realização do pedido';
-        $data ["CONTINUAR"] = $_SERVER['HTTP_REFERER'];
 
         if (sizeof($carrinho) === 0) {
             $data ["BLC_SEMPRODUTOS"] [] = array();
@@ -71,7 +64,7 @@ class Carrinho extends CI_Controller
                         "URLFOTO"       => $url,
                         "NOMEPRODUTO"   => $infoproduto->nomeproduto,
                         "VALOR"         => number_format($valorFinal, 2, ",", "."),
-                        "URLREMOVEQTD"  => ci_site_url("carrinho/remove/" . $codproduto)
+                        "URLREMOVEQTD"  => site_url("carrinho/remove/" . $codproduto)
                     );
 
                 }
@@ -79,7 +72,7 @@ class Carrinho extends CI_Controller
 
             $data ["BLC_FINALIZAR"] [] = array(
                 "VALORTOTAL"    => number_format($valorTotal, 2, ",", "."),
-                "URLFINALIZAR"  => ci_site_url('carrinho/pagamento')
+                "URLFINALIZAR"  => site_url('carrinho/pagamento')
             );
         }
 
@@ -222,7 +215,7 @@ class Carrinho extends CI_Controller
             'valor'           => number_format($valorTotal, 2, '.', ''),
             'email'           => $comprador['emailcomprador'],
             'BLC_RESUMO'      => $resumo,
-            'VALIDAPAGAMENTO' => ci_site_url('carrinho/finalizar')
+            'VALIDAPAGAMENTO' => site_url('carrinho/finalizar')
         );
 
         $preference_data = array(

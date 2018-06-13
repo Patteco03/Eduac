@@ -6,18 +6,6 @@
 					<small>Categorias - {ACAO}</small>
 				</h3>
 			</div>
-
-			<div class="title_right">
-				<div
-					class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
-					<a href="{URLLISTAR}" title="Voltar a Listagem"
-						style="color: #fff;">
-						<button type="button" class="btn btn-success">
-							<span class="glyphicon glyphicon-arrow-left"></span>Voltar
-						</button>
-					</a>
-				</div>
-			</div>
 		</div>
 	</div>
 	<div class="col-sm-4">

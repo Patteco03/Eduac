@@ -4,7 +4,7 @@ if (! defined ( 'BASEPATH' ))
 class Produto extends CI_Controller {
     public function __construct() {
         parent::__construct ();
-        $this->layout = SINGLE_LOJA;
+        $this->layout = LAYOUT_LOJA;
         $this->load->model ( "Produto_Model", "ProdutoM" );
         $this->load->model ( "ProdutoFoto_Model", "ProdutoFotoM" );
         $this->load->model ( "Sku_Model", "SkuM" );
