@@ -12,17 +12,11 @@ class Page extends CI_Controller {
 
 		$this->load->model('Produto_Model', 'ProdutoM');
 		$this->load->model('ProdutoFoto_Model', 'ProdutoFotoM');
-		
-		$data ["BLC_CURSOSPRESENCIAIS"] = array ();
-		$data ["BLC_CURSOSONLINE"] = array ();
-		$data ["BLC_SEMDADOS"] = array();
-		
-		$tipoproduto = null;	
-		
-		$produtosExibidos = 0;
-		$coluna = array ();
 
-		$colunaV = array ();
+		$data ['BLC_SEMDADOS'] = array();
+		$data ['BLC_DADOS'] = array();
+		
+		$tipoproduto = null;
 		
 		$codcategoria = 4;
 		$produto = $this->ProdutoM->getCursoPorCategoria ( $codcategoria );
@@ -63,7 +57,7 @@ class Page extends CI_Controller {
 
 			$valorParcelado = $valorFinal / 12;
 			
-			$coluna [] = array (
+			$data['BLC_DADOS'] = array (
 				"URLFOTO" => $url,
 				"URLPRODUTO" => $urlFicha,
 				"CODPRODUTO" => $p->codproduto,
@@ -74,36 +68,8 @@ class Page extends CI_Controller {
 				"VALORPARCELADO" => number_format ( $valorParcelado, 2, ",", ".")
 			);
 
-			$produtosExibidos ++;
-
-			if ($produtosExibidos === 4) {
-				$produtosExibidos = 0;
-				$data ["BLC_CURSOSPRESENCIAIS"] [] = array (
-					"BLC_COLUNA" => $coluna
-				);
-
-				$data ["BLC_CURSOSONLINE"] [] = array (
-					"BLC_COLUNA" => $colunaV
-				);
-
-				$coluna = array ();
-
-				$colunaV = array ();
-
-
-
-			}
 		}
 
-		if ($produtosExibidos > 0) {
-			$data ["BLC_CURSOSPRESENCIAIS"] [] = array (
-				"BLC_COLUNA" => $coluna
-			);
-
-			$data ["BLC_CURSOSONLINE"] [] = array (
-				"BLC_COLUNA" => $colunaV
-			);
-		}
 		
 		$this->parser->parse ( 'lojacurso', $data );
 	}

@@ -33,7 +33,8 @@
 				<nav id="topNav">
 					<ul id="responsivemenu">
 						<li class="active"><a href="<?php echo site_url('') ;?>"><i class="icon-home homeicon"></i><span class="showmobile">Home</span></a></li>
-						<li><a href="<?php echo site_url('page/lojacurso') ?>">Cursos</a>
+						<li><a href="<?php echo site_url('page/nossosprecos') ?>">Nossos Preços</a>
+                        <li><a href="<?php echo site_url('page/lojacurso') ?>">Como Funciona ?</a>
 						</li>
 						<li><a href="#">Sobre</a>
 							<ul style="display: none;">					

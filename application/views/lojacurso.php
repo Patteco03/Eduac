@@ -1,144 +1,147 @@
 
-<div class="container-fluid no-padding ">
 
-	<div class="row-fluid">
-
-		<div class="col-lg-12 conteudo">
-
-			<div class="col-md-12 cont-preparatorio">
-
-				<div class="tab-content">	
-					<div class="tab-pane active in fade" id="faq-cat-1">
-						<div class="list-cursos">
-							{BLC_CURSOSPRESENCIAIS}
-							{BLC_COLUNA}
-							
-							<div class="col-md-3 col-sm-6 col-xs-12 block">	
-
-								<form action="<?php echo site_url('carrinho/adicionar') ;?>" method="post"> 
-									<input type="hidden" value="{CODPRODUTO}" name="codproduto">
-
-									<article>
-
-										<figure>
-											<a href="{URLPRODUTO}" title="{NOMEPRODUTO}"><center>
-												<img class="img-responsive" src="{URLFOTO}"
-												alt="{NOMEPRODUTO}">
-											</center> </a>
-										</figure>
-
-										<div class="list-cursos-descricao">
-											<p>{FICHAPRODUTO}</p>
-										</div>
-										<br> 
-										<div class="col-sm-12" class="block-preco">
-											{BLC_PRECOPROMOCIONAL} 
-											<span class="valorantigo"> <i> de R$ {VALORANTIGO} </i> </span> <br>
-											{/BLC_PRECOPROMOCIONAL}  
-											<span class="numvezes"> até 12X de R$ {VALORPARCELADO} </span><br>
-											<span class="valorAu"> ou à vista por R$ {VALOR}  </span><br><br>
-										</div>
-										<div class="ph-float">
-											<button type="submit" class='ph-button ph-btn-green'>Comprar <i class="fa fa-cart-plus" aria-hidden="true"></i></button>
-										</div>
-
-									</article>
-
-								</form>
-
-							</div>
-
-							
-							{/BLC_COLUNA}
-							{/BLC_CURSOSPRESENCIAIS}	
-						</div>
-
-					</div>
-
-					<div class="tab-pane in fade" id="faq-cat-2">
-						<div class="list-cursos">
-							{BLC_CURSOSONLINE}
-							{BLC_COLUNA}
-							
-
-							<div class="col-md-3 col-sm-6 col-xs-12 block">	
-
-								<form action="<?php echo site_url('carrinho/adicionar') ;?>" method="post"> 
-									<input type="hidden" value="{CODPRODUTO}" name="codproduto">
-
-
-
-									<article>
-
-										<figure>
-											<a href="{URLPRODUTO}" title="{NOMEPRODUTO}"><center>
-												<img class="img-responsive" src="{URLFOTO}"
-												alt="{NOMEPRODUTO}">
-											</center> </a>
-										</figure>
-
-										<div class="list-cursos-descricao">
-											<p>{FICHAPRODUTO}</p>
-										</div>
-										<br> {BLC_PRECOPROMOCIONAL} <span>de R$ {VALORANTIGO} por</span>
-										{/BLC_PRECOPROMOCIONAL}  <span> <i> à vista por R$</i> {VALOR}  </span> <br>
-
-										<div class="ph-float">
-											<button type="submit" class='ph-button ph-btn-green'>Comprar <i class="fa fa-cart-plus" aria-hidden="true"></i></button>
-										</div>
-
-									</article>
-
-								</form>
-
-							</div>
-
-							
-							{/BLC_COLUNA}
-							{/BLC_CURSOSONLINE}	
-						</div>
-					</div>
-				</div>
-
-				<div class="table-responsive">
-					<table class="table table-bordered table-hover table-striped">
-
-						<tbody>
-							{BLC_SEMDADOS}
-							<tr>
-								<td colspan="6" class="alinha-centro"><span>Não há cursos ainda</span></td>
-							</tr>
-							{/BLC_SEMDADOS}
-						</tbody>
-					</table>
-				</div>
-
-
-			</div>
-
-		</div>
-
-	</div>
-
+<!-- HEADER
+================================================== -->
+<div class="undermenuarea">
+    <div class="boxedshadow">
+    </div>
+    <div class="grid">
+        <div class="row">
+            <div class="c8">
+                <h1 class="titlehead">Loja</h1>
+            </div>
+            <div class="c4">
+                <h1 class="titlehead rightareaheader"><i class="icon-map-marker"></i> Call Us Now 1-318-107-432</h1>
+            </div>
+        </div>
+    </div>
 </div>
+<!-- CONTENT
+================================================== -->
+<div class="grid">
+    <div class="shadowundertop"></div>
+    <div class="row">
+        <div class="c12">
+            <h1 class="maintitle space-top">
+                <span>Sua loja Virtual</span>
+            </h1>
+        </div>
+    </div>
+    {BLC_DADOS}
+    <!-- begin filter -->
+    <div class="row space-bot">
+        <div class="c12">
+            <div id="nav">
+                <ul>
+                    <li><a href="" data-filter="*" class="selected">Todos os cursos</a></li>
+                    <li><a href="" data-filter=".cat1">Classic</a></li>
+                    <li><a href="" data-filter=".cat2">Elegant</a></li>
+                    <li><a href="" data-filter=".cat3">Modern</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!-- end filter -->
+    <div class="row space-top">
+        <div id="content">
+            <!-- image 1 -->
+            <div class="boxfourcolumns cat1 cat3">
+                <div class="boxcontainer">
+						<span class="gallery">
+						<a data-gal="prettyPhoto[gallery1]" href="http://www.youtube.com/watch?v=QX2yt95Yu90"><img src="http://placehold.it/350x150&text=any.size.you+wish" alt="Add Title" class="imgOpa"/></a>
+						</span>
+                    <h1><a href="#">Dalya</a></h1>
+                    <p>
+                        porta acean pulvinar
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    {/BLC_DADOS}
+    {BLC_SEMDADOS}
+    <div class="row space-bot">
+        <div class="c12">
+            <div class="wrapaction">
+                <div class="c12">
+                    <h1 class="subtitles">Sem cursos cadastrados.</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+    {/BLC_SEMDADOS}
+</div><!-- end grid -->
 
-<style type="text/css">
-@media (max-width: 768px){
-	.block {
-		width: calc(100%/2 - 20px);
-	}
+<!-- JAVASCRIPTS
+================================================== -->
+<!-- all -->
 
-}
-@media (max-width: 425px){
-	.block {
-		width: calc(100% - 20px);
-	}
-}
-@media (max-width: 320px){
-	.block {
-		width: calc(100%);
-		margin: 10px 0;
-		border: none;
-	}
-}
-</style>
+<!-- filterable -->
+<script src="<?php echo base_url()."assets/site/" ?>js/jquery.isotope.min.js"></script>
+
+<!-- gallery -->
+<script src="<?php echo base_url()."assets/site/" ?>js/jquery.prettyPhoto.js"></script>
+
+<!-- CALL opacity on hover images -->
+<script type="text/javascript">
+    $(document).ready(function(){
+        $("img.imgOpa").hover(function() {
+                $(this).stop().animate({opacity: "0.6"}, 'slow');
+            },
+            function() {
+                $(this).stop().animate({opacity: "1.0"}, 'slow');
+            });
+    });
+</script>
+
+<!-- CALL filtering -->
+<script>
+    $(document).ready(function(){
+        var $container = $('#content');
+        $container.imagesLoaded( function(){
+            $container.isotope({
+                filter: '*',
+                animationOptions: {
+                    duration: 750,
+                    easing: 'linear',
+                    queue: false,
+                }
+            });
+        });
+        $('#nav a').click(function(){
+            var selector = $(this).attr('data-filter');
+            $container.isotope({
+                filter: selector,
+                animationOptions: {
+                    duration: 750,
+                    easing: 'linear',
+                    queue: false,
+                }
+            });
+            return false;
+        });
+
+        $('#nav a').click(function (event) {
+            $('a.selected').removeClass('selected');
+            var $this = $(this);
+            $this.addClass('selected');
+            var selector = $this.attr('data-filter');
+
+            $container.isotope({
+                filter: selector
+            });
+            return false; // event.preventDefault()
+        });
+
+    });
+</script>
+
+<!-- CALL lightbox prettyphoto -->
+<script type="text/javascript">
+    $(document).ready(function(){
+        $("a[data-gal^='prettyPhoto']").prettyPhoto({social_tools:'', animation_speed: 'normal' , theme: 'dark_rounded'});
+    });
+</script>
+
+</body>
+</html>
