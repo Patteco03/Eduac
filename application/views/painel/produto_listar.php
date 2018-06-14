@@ -35,7 +35,7 @@
                                     <td>{NOME}</td>
                                     <td><a href="{URLVIDEO}">Ver material</a></td>
                                     <td>
-                                        <a hhref="{URLEXCLUIR}"
+                                        <a href="{URLEXCLUIR}"
                                         onclick="return confirm('Deseja realmente ')"><button class="btn btn-danger"><i class="fa fa-trash-o"></i> Delete</button></a>
                                         <a href="{URLEDITAR}"><button class="btn btn-info"><i
                                             class="fa fa-pencil"></i> Editar</button></a>

@@ -1,155 +1,136 @@
-<section class="conteudo-single">
-
-	<div class="container-fluid">
-
-		<div class="row-fluid">
-
-			<div class="col-md-2">
-				<img class="img-responsive" src="{FOTOPRINCIPAL}" alt="{NOMEPRODUTO}" title="{NOMEPRODUTO}">
-			</div>
-
-			<div class="col-md-8 title-ficha">
-				<h5>{NOMEPRODUTO}</h5>
-				<span class=""><i class="fa fa-clock-o" aria-hidden="true"></i> Duração:  {DURACAO} Meses</span>
-				<br>
-				<!-- Nav tabs --><div class="card">
-					<ul class="nav nav-tabs" role="tablist">
-						<li role="presentation" class="active"><a href="#descricao" aria-controls="descricao" role="tab" data-toggle="tab">Descrição</a></li>
-						<li role="presentation"><a href="#ficha" aria-controls="ficha" role="tab" data-toggle="tab">Ficha</a></li>
-						<li role="presentation"><a href="#corpodocente" aria-controls="corpodocente" role="tab" data-toggle="tab">Corpo Docente</a></li>
-						<li role="presentation"><a href="#faq" aria-controls="faq" role="tab" data-toggle="tab">FAQ</a></li>
-					</ul>
-
-					<!-- Tab panes -->
-					<div class="tab-content">
-						<div role="tabpanel" class="tab-pane active" id="descricao">{DESCRICAOBASICA}.</div>
-						<div role="tabpanel" class="tab-pane" id="ficha">{DESCRICAOCOMPLETA}.</div>
-						<div role="tabpanel" class="tab-pane" id="corpodocente">{BLC_PROFESSORES}
-							<div class="col-sm-4 col-xs-12">
-								<center> 
-									<img src="{IMG}" class="img-responsive" width="100" height="100" alt="{NOMEPROFESSOR}">
-									<h5 style="font-size: 1.5em;"> {NOMEPROFESSOR}</h5>
-									<span class="disciplinaProfessor">{DISCIPLINA}</span>
-								</center>
-							</div>	
-						{/BLC_PROFESSORES}</div>
-						<div role="tabpanel" class="tab-pane" id="faq"></div>
-					</div>
-				</div>
-
-				<div id="share"></div>
-
-			</div>
-
-			<div class="col-md-2">
-
-				<form action="<?php echo ci_site_url('carrinho/adicionar') ;?>" method="post"> 
-					<input type="hidden" value="{CODPRODUTO}" name="codproduto">
-
-					<article style="background: #EEEEEE;padding: 48px 0px 0px;">
-						<center> 
-							Curso: {NOMEPRODUTO}
-							<br>
-							{BLC_PRECOPROMOCIONAL} <span>de R$ {VALORANTIGO} por</span>
-							{/BLC_PRECOPROMOCIONAL}  <span> <i> à vista por R$</i> {VALOR} </span> 
-							<br>
-						</center>	
-
-						<div class="button-oos" style="padding-top: 20px;text-align: center;">
-							<button type="submit" class='ph-button ph-btn-green' style="width: 100%;">Comprar <i class="fa fa-cart-plus" aria-hidden="true"></i></button>
-						</div>
-
-					</article>
-
-				</form>
-
-				<br><br>
-			<!-- 
-			contact form created for treehouse competition.
-		-->	
-		<form method="post" id="contact" action="<?php echo ci_site_url('produto/EnviarEmail') ;?>">
-
-			<?php if ($this->session->flashdata('success') == TRUE): ?>
-				<div><?= $this->session->flashdata('success'); ?></div>
-			<?php endif; ?>
-			<?php if ($this->session->flashdata('error') == TRUE): ?>
-				<div><?= $this->session->flashdata('error'); ?></div>
-			<?php endif; ?>
-
-			<center> <span>Dúvidas sobre o curso ?</span></center>
-			<input type="text" name="name" placeholder="Name" required="required" /><br />
-			<input  type="email" name="email" placeholder="Email" required="required" /><br />
-			<input  type="text" name="numero" placeholder="(68) 99999-9999"  required="required"/><br />
-			<div class="message">Message Sent</div>
-			<button id="submit" type="submit">
-				Enviar!
-			</button>
-
-		</form>
-
-
-
-	</div>
-
+<!-- HEADER
+================================================== -->
+<div class="undermenuarea">
+    <div class="boxedshadow">
+    </div>
+    <div class="grid">
+        <div class="row">
+            <div class="c8">
+                <h1 class="titlehead">Sobre</h1>
+            </div>
+            <div class="c4">
+                <h1 class="titlehead rightareaheader"><i class="icon-map-marker"></i> Rio Branco-AC</h1>
+            </div>
+        </div>
+    </div>
 </div>
+<!-- CONTENT
+================================================== -->
+<div class="grid">
+    <div class="shadowundertop">
+    </div>
+    <div class="row space-top">
+        <div class="c12 space-top">
+            <h1 class="maintitle ">
+                <span>Informações Adicionais</span>
+            </h1>
+        </div>
+        <!-- BEGIN TEAM STYLE 2
+		================================================== -->
+        <div class="c4">
+            <p>
+                <img src="{FOTOPRINCIPAL}" style="border-bottom: 5px solid #eee;" alt="{NOMEPRODUTO}">
+            </p>
+        </div>
+        <div class="c4">
+            <h5><h5>{NOMEPRODUTO} / Duração:  {DURACAO} Meses</h5>
+            <p>
+                 {DESCRICAOBASICA}
+            </p>
+            <p>
+            </p>
+            <ul class="social-links">
+                <li class="twitter-link">
+                    <a href="#" class="twitter has-tip" target="_blank" title="Follow Us on Twitter">Twitter</a>
+                </li>
+                <li class="facebook-link">
+                    <a href="#" class="facebook has-tip" target="_blank" title="Join us on Facebook">Facebook</a>
+                </li>
+                <li class="google-link">
+                    <a href="#" class="google has-tip" title="Google +" target="_blank">Google</a>
+                </li>
+                <li class="dribbble-link">
+                    <a href="#" class="dribbble has-tip" title="Dribbble" target="_blank">Dribbble</a>
+                </li>
+                <li class="linkedin-link">
+                    <a href="#" class="linkedin has-tip" title="Linkedin" target="_blank">Linkedin</a>
+                </li>
+                <li class="pinterest-link">
+                    <a href="#" class="pinterest has-tip" title="Pinterest" target="_blank">Pinterest</a>
+                </li>
+            </ul>
+            <div class="clear"></div>
+            <p>
+            </p>
+        </div>
+        <div class="c4">
+            <ul id="skill">
+                <li><span class="bar progressorange" style="width:100%;"></span>
+                    <h3>Andamento do curso</h3>
+                </li>
+                <li><span class="bar progressgreen" style="width:80%;"></span>
+                    <h3>Aulas Disponíveis 80%</h3>
+                </li>
+            </ul>
+        </div>
+        <!-- END TEAM STYLE 1
+		================================================== -->
+    </div>
 
-<div class="slide-relacionados-single">
+    <div class="row space-top">
+        <div class="c12">
+            <h1 class="maintitle ">
+                <span>CURSOS RELACIONADOS</span>
+            </h1>
+        </div>
+        <!-- BEGIN TEAM STYLE CAROUSEL
+		================================================== -->
+        <div class="c12">
+            <div class="list_carousel">
+                <div class="carousel_nav">
+                    <a class="prev" id="car_prev" href="#"><span>prev</span></a>
+                    <a class="next" id="car_next" href="#"><span>next</span></a>
+                </div>
+                <div class="clearfix">
+                </div>
+                <ul id="recent-projects">
+                    <!--featured-projects 1-->
+                    {BLC_CURSOSPRESENCIAIS}
+                    <li>
+                        <div class="featured-projects">
+                            <div class="featured-projects-image">
+                                <a href="{URLPRODUTO}"><img class="imgOpa" src="{URLFOTO}" alt="{NOMEPRODUTO}"></a>
+                            </div>
+                            <div class="featured-projects-content">
+                                <h1><a href="{URLPRODUTO}">{NOMEPRODUTO}</a></h1>
+                                <p>
+                                    {FICHAPRODUTO}
+                                </p>
+                                <div class="col-sm-12" class="block-preco">
+                                    {BLC_PRECOPROMOCIONAL}
+                                    <span class="valorantigo"> <i> de R$ {VALORANTIGO} </i> </span> <br>
+                                    {/BLC_PRECOPROMOCIONAL}
+                                    <span class="numvezes"> até 12X de R$ {VALORPR} </span><br>
+                                    <span class="valorAu"> ou à vista por R$ {VALOR}  </span><br><br>
+                                </div>
 
-	<div class="col-md-12" style=";padding-top: 40px;">
+                                <form action="<?php echo site_url('carrinho/adicionar') ;?>" method="post">
+                                    <input type="hidden" value="{CODPRODUTO}" name="codproduto">
+                                    <div class="ph-float">
+                                        <button type="submit" class='btn btn-success'>Comprar <i class="icon-plus" aria-hidden="true"></i></button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </li>
+                    {/BLC_CURSOSPRESENCIAIS}
+                </ul>
+                <div class="clearfix">
+                </div>
+            </div>
+        </div>
+        <!-- END TEAM STYLE CAROUSEL
+		================================================== -->
 
-		<CENTER><h5 class="cr-relacionados">Cursos Relacionados:</h5></CENTER> <br>
-
-		<div class="owl-carousel owl-theme list-cursos-rela">
-			{BLC_CURSOSPRESENCIAIS}
-
-			<div class="slide">
-
-				<form action="<?php echo ci_site_url('carrinho/adicionar') ;?>" method="post"> 
-					<input type="hidden" value="{CODPRODUTO}" name="codproduto">
-
-					<article>
-
-						<figure>
-							<a href="{URLPRODUTO}" title="{NOMEPRODUTO}"><center>
-								<img class="img-responsive" src="{URLFOTO}"
-								alt="{NOMEPRODUTO}">
-							</center> </a>
-						</figure>
-
-						<div class="list-cursos-descricao">
-							<p>{FICHAPRODUTO}</p>
-						</div>
-						<div class="col-sm-12" class="block-preco">
-							{BLC_PRECOPROMOCIONAL} 
-							<span class="valorantigo"> <i> de R$ {VALORANTIGO} </i> </span> <br>
-							{/BLC_PRECOPROMOCIONAL}  
-							<span class="numvezes"> até 12X de R$ {VALORPR} </span><br>
-							<span class="valorAu"> ou à vista por R$ {VALOR}  </span><br><br>
-						</div>
-
-						<div class="ph-float">
-							<button type="submit" class='ph-button ph-btn-green'>Comprar <i class="fa fa-cart-plus" aria-hidden="true"></i></button>
-						</div>
-
-					</article>
-
-				</form>
-
-			</div>
-
-			{/BLC_CURSOSPRESENCIAIS}	
-		</div>
-
-	</div>	
-
-</div>
-
-</div>
-
-</section>
-
-<script>
-	$("#share").jsSocials({
-		shares: ["email", "twitter", "facebook", "googleplus", "linkedin", "pinterest", "stumbleupon", "whatsapp"]
-	});
-</script>
+    </div>
+</div><!-- end grid -->

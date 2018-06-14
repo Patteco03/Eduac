@@ -37,7 +37,6 @@ class Produto extends CI_Controller {
         $data ["CODPRODUTO"]            = $codproduto;
         $data ["BLC_GALERIA"]           = array ();
         $data ["BLC_CURSOSPRESENCIAIS"] = array ();
-        $data ['BLC_PROFESSORES']       = array ();  
         
         if (! empty ( $info->codtipoatributo )) {
             $sku = $this->SkuM->getPorProdutoAtributo ( $codproduto );
@@ -67,21 +66,21 @@ class Produto extends CI_Controller {
             ), TRUE );
         
         if ($foto) {
-            $data ["FOTOPRINCIPAL"] = base_url ( "assets/img/produto/150x150/" . $foto->codprodutofoto . "." . $foto->produtofotoextensao );
+            $data ["FOTOPRINCIPAL"] = base_url ( "assets/images/produto/150x150/" . $foto->codprodutofoto . "." . $foto->produtofotoextensao );
         } else {
-            $data ["FOTOPRINCIPAL"] = base_url ( "assets/img/foto-indisponivel.jpg" );
+            $data ["FOTOPRINCIPAL"] = base_url ( "assets/images/foto-indisponivel.png" );
         }
 
         $precoPromocional = array ();
 
         $valorFinal = $info->valor;
 
-        if (($info->valorpromocional > 0) && ($info->valorpromocional < $info->valorproduto)) {
+        if (($info->valorpromocional > 0) && ($info->valorpromocional < $info->valor)) {
             $precoPromocional [] = array (
-                "VALORANTIGO" => number_format ( $info->valorproduto, 2, ",", "." )
+                "VALORANTIGO" => number_format ( $info->valor, 2, ",", "." )
                 );
 
-            $valorFinal = $p->valorpromocional;
+            $valorFinal = $info->valorpromocional;
         }
 
         $produto = $this->ProdutoM->getCursoPorCategoria ($info->codtipoatributo);
@@ -94,13 +93,13 @@ class Produto extends CI_Controller {
 
             $foto = $this->ProdutoFotoM->get ( $filtroFoto, TRUE );
 
-            $url = base_url ( "assets/img/foto-indisponivel.jpg" );
+            $url = base_url ( "assets/images/foto-indisponivel.png" );
 
             if ($foto) {
-                $url = base_url ( "assets/img/produto/150x150/" . $foto->codprodutofoto . "." . $foto->produtofotoextensao );
+                $url = base_url ( "assets/images/produto/150x150/" . $foto->codprodutofoto . "." . $foto->produtofotoextensao );
             }
 
-            $urlFicha = ci_site_url ( "produto/" . $p->codproduto . "/" . $p->urlseo );
+            $urlFicha = site_url( "produto/" . $p->codproduto . "/" . $p->urlseo );
 
             $precoPromocionalP = array ();
 
@@ -132,30 +131,6 @@ class Produto extends CI_Controller {
         $data ["BLC_PRECOPROMOCIONAL"] = $precoPromocional;
         $data ["VALOR"] = number_format ( $valorFinal, 2, ",", "." );
 
-        $this->load->model ( 'UsuarioProduto_Model', 'UsuarioPro' );
-
-        $UsuVinc = $this->UsuarioPro->getUsuarioProduto ($codproduto);
-
-        if ($UsuVinc) {
-
-            foreach ($UsuVinc as $us) {
-
-                if (!$us->image) {
-                    $fotopf = base_url("assets/img/user.png");
-                }else{
-                    $fotopf = base_url($us->image);
-                }
-
-                $data ['BLC_PROFESSORES'] [] = array(
-
-                    "NOMEPROFESSOR"  => $us->nomeusuario ,
-                    "DISCIPLINA"     => $us->disciplina,
-                    "IMG"            => $fotopf
-
-                );
-
-            }
-        }
 
         $this->parser->parse ( "ficha_produto", $data );
     }

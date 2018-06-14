@@ -213,14 +213,7 @@ class Produto extends CI_Controller {
 		
 		$valor = modificaDinheiroBanco ( $valor );
 		$valorpromicional = modificaDinheiroBanco ( $valorpromicional );
-		
-		if($datainicio) {
-			$datainicio = dateBR2MySQL($datainicio);
-		}
 
-		if($datafinal){
-			$datafinal = dateBR2MySQL($datafinal);
-		}
 		
 		$erros = FALSE;
 		$mensagem = null;
@@ -322,8 +315,12 @@ class Produto extends CI_Controller {
 		$data 						= array ();
 		$data ['ACAO'] 				= 'Edição';
 		$data ['ACAOBUTTON'] 		= 'Atualizar';
+		$data ['ACAOFORM']            = site_url('painel/produto/salvar');
 		$data ['des_tipoatributo']  = 'disabled="disabled"';
 		$data ['readonly'] 			= 'readonly';
+
+		$usuario = $this->session->userdata ( 'loginatendimento' );
+		$data ['codusuario'] = $usuario['codusuario'];
 		
 
 		$res = $this->ProdutoM->get ( array (
@@ -343,9 +340,9 @@ class Produto extends CI_Controller {
 		$data ['valor'] = modificaNumericValor ( $res->valor );
 		$data ['valorpromocional'] = modificaNumericValor ( $res->valorpromocional );
 
-		$data ['datainicio'] = inverteData($res->datainicio);
+		$data ['datainicio'] = $res->datainicio;
 
-		$data ['datafinal']  = inverteData($res->datafinal);
+		$data ['datafinal']  = $res->datafinal;
 		
 		site_url ( $data, 'produto' );
 		

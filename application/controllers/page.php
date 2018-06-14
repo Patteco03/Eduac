@@ -12,62 +12,89 @@ class Page extends CI_Controller {
 
 		$this->load->model('Produto_Model', 'ProdutoM');
 		$this->load->model('ProdutoFoto_Model', 'ProdutoFotoM');
+		$this->load->model('Departamento_Model', 'DepartamentoM');
+		$this->load->model('ProdutoDepartamento_Model', 'ProdDepM');
 
 		$data ['BLC_SEMDADOS'] = array();
 		$data ['BLC_DADOS'] = array();
+		$data ['BLC_CATEGORIAS'] = array();
 		
 		$tipoproduto = null;
-		
-		$codcategoria = 4;
-		$produto = $this->ProdutoM->getCursoPorCategoria ( $codcategoria );
-		
-		if (!$produto){
-			$data ['BLC_SEMDADOS'] [] = array ();
-		}
-		
-		foreach ( $produto as $p ) {
 
-			$filtroFoto = array (
-				"p.codproduto" => $p->codproduto
-			);
+		$res = $this->ProdutoM->get ( array (), FALSE, FALSE , FALSE);
 
-			$foto = $this->ProdutoFotoM->get ( $filtroFoto, TRUE );
-
-			$url = base_url ( "assets/images/foto-indisponivel.png" );
-
-			if ($foto) {
-				$url = base_url ( "assets/img/produto/150x150/" . $foto->codprodutofoto . "." . $foto->produtofotoextensao );
-			}
-
-			$urlFicha = site_url ( "produto/" . $p->codproduto . "/" . $p->urlseo );
-
-			$precoPromocional = array ();
-
-			$valorFinal = $p->valor;
-			$valorParcelado = null;
-
-			if (($p->valorpromocional > 0) && ($p->valorpromocional < $p->valor)) {
-
-				$valorFinal = $p->valorpromocional;
-
-				$precoPromocional [] = array (
-					"VALORANTIGO"    => number_format ( $p->valor, 2, ",", "." )
+		$categoria = $this->DepartamentoM->get(array(), FALSE, FALSE);
+		if ($categoria) {
+			foreach($categoria as $c) {
+				$data['BLC_CATEGORIAS'][] = array(
+					"ID"        => $c->codepartamento,
+					"NOME"		=> $c->nomedepartamento,
 				);
 			}
+		}
 
-			$valorParcelado = $valorFinal / 12;
-			
-			$data['BLC_DADOS'] = array (
-				"URLFOTO" => $url,
-				"URLPRODUTO" => $urlFicha,
-				"CODPRODUTO" => $p->codproduto,
-				"NOMEPRODUTO" => $p->nomeproduto,
-				"FICHAPRODUTO" => $p->fichaproduto,
-				"BLC_PRECOPROMOCIONAL" => $precoPromocional,
-				"VALOR" => number_format ( $valorFinal, 2, ",", "." ),
-				"VALORPARCELADO" => number_format ( $valorParcelado, 2, ",", ".")
-			);
+		if ($res) {
 
+			foreach ( $res as $r ) {
+
+				$foto = $this->ProdutoFotoM->getFoto ( $r->codproduto );
+
+				if (! $foto) {
+					$urlFoto = base_url ( "assets/images/foto-indisponivel.png" );
+				}
+
+				if ($foto) {
+
+					foreach ( $foto as $f ) {
+						$urlFoto = base_url ( "assets/images/produto/150x150/" . $f->codprodutofoto . "." . $f->produtofotoextensao );
+					}
+				}
+
+
+				$aDepartamentosVinculados = array ();
+
+				$depVinc = $this->ProdDepM->get ( array (
+					"dp.codproduto" => $r->codproduto
+				) );
+
+				if ($depVinc) {
+					foreach ( $depVinc as $depv ) {
+						$aDepartamentosVinculados [] = array(
+							"codprodutodepartamento" => $depv->codprodutodepartamento
+						);
+					}
+				}
+
+				$urlProduto = site_url("produto/".$r->codproduto."/".$r->urlseo);
+				$precoPromocional = array();
+				$valorFinal = $r->valor;
+				if (($r->valorpromocional > 0) && ($r->valorpromocional < $r->valor)){
+					$precoPromocional [] = array(
+						"VALORANTIGO" => number_format($r->valor, 2, ",", ".")
+					);
+
+					$valorFinal = $r->valorpromocional;
+				}
+
+				$valorPar = $valorFinal / 12;
+
+				$data['BLC_DADOS'] [] = array (
+					"CODPRODUTO"		    => $r->codproduto,
+					"NOME" 				    => $r->nomeproduto,
+					"FICHA"                 => $r->fichaproduto,
+					"IMAGEMDESTACADA" 	    => $urlFoto,
+					"URLSEO"                => $urlProduto,
+					"VALOR"                 => number_format($valorFinal, 2, ",", "."),
+					"BLC_PRECOPROMOCIONAL"  => $precoPromocional,
+					"VALORPR"              => number_format ( $valorPar, 2, ",", "." ),
+					"DEP"                   => $aDepartamentosVinculados
+				);
+
+			}
+
+
+		} else {
+			$data ['BLC_SEMDADOS'] [] = array ();
 		}
 
 		

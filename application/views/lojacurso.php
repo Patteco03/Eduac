@@ -11,7 +11,7 @@
                 <h1 class="titlehead">Loja</h1>
             </div>
             <div class="c4">
-                <h1 class="titlehead rightareaheader"><i class="icon-map-marker"></i> Call Us Now 1-318-107-432</h1>
+                <h1 class="titlehead rightareaheader"><i class="icon-map-marker"></i> Rio Branco-AC </h1>
             </div>
         </div>
     </div>
@@ -27,16 +27,15 @@
             </h1>
         </div>
     </div>
-    {BLC_DADOS}
     <!-- begin filter -->
     <div class="row space-bot">
         <div class="c12">
             <div id="nav">
                 <ul>
                     <li><a href="" data-filter="*" class="selected">Todos os cursos</a></li>
-                    <li><a href="" data-filter=".cat1">Classic</a></li>
-                    <li><a href="" data-filter=".cat2">Elegant</a></li>
-                    <li><a href="" data-filter=".cat3">Modern</a></li>
+                    {BLC_CATEGORIAS}
+                    <li><a href="" data-filter=".cat{ID}">{NOME}</a></li>
+                    {/BLC_CATEGORIAS}
                 </ul>
             </div>
         </div>
@@ -44,32 +43,46 @@
     <!-- end filter -->
     <div class="row space-top">
         <div id="content">
+            {BLC_DADOS}
             <!-- image 1 -->
-            <div class="boxfourcolumns cat1 cat3">
+            <div class="boxfourcolumns {DEP}cat{codprodutodepartamento} {/DEP}">
                 <div class="boxcontainer">
 						<span class="gallery">
-						<a data-gal="prettyPhoto[gallery1]" href="http://www.youtube.com/watch?v=QX2yt95Yu90"><img src="http://placehold.it/350x150&text=any.size.you+wish" alt="Add Title" class="imgOpa"/></a>
+						<a  href="{URLSEO}"><img src="{IMAGEMDESTACADA}" alt="Add Title" class="imgOpa"/></a>
 						</span>
-                    <h1><a href="#">Dalya</a></h1>
+                    <h1><a href="{URLSEO}">{NOME}</a></h1>
                     <p>
-                        porta acean pulvinar
+                        {FICHA}
+                    </p>
+                    <hr>
+                    <div class="col-sm-12" class="block-preco">
+                        {BLC_PRECOPROMOCIONAL}
+                        <span class="valorantigo"> <i> de R$ {VALORANTIGO} </i> </span> <br>
+                        {/BLC_PRECOPROMOCIONAL}
+                        <span class="numvezes"> até 12X de R$ {VALORPR} </span><br>
+                        <span class="valorAu"> ou à vista por R$ {VALOR}  </span><br><br>
+                    </div>
+                    <p>
+                    <form action="<?php echo site_url('carrinho/adicionar') ;?>" method="post">
+                        <input type="hidden" value="{CODPRODUTO}" name="codproduto">
+
+                        <div class="ph-float">
+                            <button type="submit" class='btn btn-success'>Comprar <i class="icon-plus" aria-hidden="true"></i></button>
+                        </div>
+                    </form>
                     </p>
                 </div>
             </div>
-        </div>
-    </div>
-    {/BLC_DADOS}
-    {BLC_SEMDADOS}
-    <div class="row space-bot">
-        <div class="c12">
+            {/BLC_DADOS}
+            {BLC_SEMDADOS}
             <div class="wrapaction">
                 <div class="c12">
-                    <h1 class="subtitles">Sem cursos cadastrados.</h1>
+                    <h1 class="subtitles">Sem cursos cadastrados!</h1>
                 </div>
             </div>
+            {/BLC_SEMDADOS}
         </div>
     </div>
-    {/BLC_SEMDADOS}
 </div><!-- end grid -->
 
 <!-- JAVASCRIPTS

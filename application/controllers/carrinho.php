@@ -46,10 +46,10 @@ class Carrinho extends CI_Controller
 
                     $foto = $this->ProdutoFotoM->get($filtroFoto, TRUE);
 
-                    $url = base_url("assets/img/foto-indisponivel.jpg");
+                    $url = base_url("assets/images/foto-indisponivel.png");
 
                     if ($foto) {
-                        $url = base_url("assets/img/produto/150x150/" . $foto->codprodutofoto . "." . $foto->produtofotoextensao);
+                        $url = base_url("assets/images/produto/150x150/" . $foto->codprodutofoto . "." . $foto->produtofotoextensao);
                     }
 
                     if (($infoproduto->valorpromocional > 0) && ($infoproduto->valor > $infoproduto->valorpromocional)) {
@@ -57,6 +57,7 @@ class Carrinho extends CI_Controller
                     } else {
                         $valorFinal = $infoproduto->valor;
                     }
+                    $valorTotal = 0;
 
                     $valorTotal += $valorFinal * $quantidade;
 
